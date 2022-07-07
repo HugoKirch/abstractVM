@@ -30,4 +30,4 @@ jobs:
           target_repo_url:
             git@github.com:EpitechPromo2025/B-SYN-400-NCY-4-1-abstractVM-hugo.kirch.git
           ssh_private_key:
-            ${{ secrets.NODUMP }}
+            ${{ secrets.SSH_PRIVATE_KEY }}
