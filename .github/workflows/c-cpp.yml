@@ -25,7 +25,7 @@ jobs:
         run: |
           make
           mv tests/task00/task.avm ./tastk.avm
-          ./abstractvm task.avm > comp
+          ./abstractVM task.avm > comp
           diff expexted comp
 
   extra-tests:
