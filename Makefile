@@ -16,7 +16,7 @@ SRCS	=	$(wildcard src/*.cpp)
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-CXXFLAGS	=	-std=c++20 -g -Wall -Wextra -Werror -I include
+CXXFLAGS	=	-std=c++2a -g -Wall -Wextra -Werror -I include
 
 all:	$(NAME)
 

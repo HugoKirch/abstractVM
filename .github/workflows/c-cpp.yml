@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: CI
 
 on:
   push
@@ -7,16 +7,43 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: epitechcontent/epitest-docker
 
     steps:
-    - uses: actions/checkout@v3
-    - name: make
-      run: make
-      
+      - uses: actions/checkout@v3
+      - name: make
+        run: make
+
+  mandatory-tests:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: empty_avm
+        run: |
+          make
+          mv tests/task00/task.avm ./task.avm
+          ./abstractVM task.avm > output
+          diff output tests/task00/expected
+      - name: empty_shell_input
+        run: |
+          make
+          mv tests/task01/input ./input
+          cat input | ./abstractVM > output
+          diff output tests/task00/expected
+
+  extra-tests:
+    needs: build
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: prout
+        run: echo prout
+
   push:
     if: github.ref == 'refs/heads/main'
-    needs: build
+    needs: [build, mandatory-tests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
