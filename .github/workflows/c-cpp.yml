@@ -22,12 +22,10 @@ jobs:
         sudo apt-get install gcc-multilib
     - name: make
       run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
       
-  Push:
+  push:
+    if: ${{ github.ref == 'master' }}
+    needs: build
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
     steps:
