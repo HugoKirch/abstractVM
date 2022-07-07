@@ -25,8 +25,8 @@ jobs:
         run: |
           make
           mv tests/task00/task.avm ./task.avm
-          ./abstractVM task.avm > comp
-          diff expected comp
+          ./abstractVM task.avm > output
+          diff output tests/task00/expected
 
   extra-tests:
     needs: build
