@@ -24,7 +24,7 @@ jobs:
       run: make
       
   push:
-    if: ${{ github.ref == 'master' }}
+    if: ${{ github.ref == 'main' }}
     needs: build
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
