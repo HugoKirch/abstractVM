@@ -29,7 +29,7 @@ jobs:
       - name: empty_shell_input
         run: |
           make
-          mv tests/task00/input ./input
+          mv tests/task01/input ./input
           cat input | ./abstractVM > output
           diff output tests/task00/expected
 
