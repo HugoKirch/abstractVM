@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: make
-      run: make
+      - uses: actions/checkout@v3
+      - name: make
+        run: make
 
   mandatory-tests:
     needs: build
@@ -20,7 +20,7 @@ jobs:
     container: epitechcontent/epitest-docker
 
     steps:
-      - uses: action/checkout@v3
+      - uses: actions/checkout@v3
       - name: empty_avm
         run: |
           make
