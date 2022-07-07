@@ -22,9 +22,9 @@ jobs:
     steps:
       - name: empty_avm
         run: |
-          cp tests/task00/task.avm ./tastk.avm
+          make
+          mv tests/task00/task.avm ./tastk.avm
           ./abstractvm task.avm > comp
-          rm task.avm
           diff expexted comp
 
   push:
