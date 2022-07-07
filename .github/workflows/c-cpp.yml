@@ -14,11 +14,12 @@ jobs:
     - name: make
       run: make
 
-  tests:
+  mandatory-tests:
     needs: build
 
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
+
     steps:
       - name: empty_avm
         run: |
@@ -27,9 +28,18 @@ jobs:
           ./abstractvm task.avm > comp
           diff expexted comp
 
+  extra-tests:
+    needs: build
+
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: prout
+        run: echo prout
+
   push:
     if: github.ref == 'refs/heads/main'
-    needs: build
+    needs: [build, mandatory-tests]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
