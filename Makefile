@@ -12,12 +12,11 @@ CXX	=	g++
 
 RM	=	rm -f
 
-SRCS	=	src/main.cpp \
-	src/Error.cpp
+SRCS	=	$(wildcard src/*.cpp)
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-CXXFLAGS	=	-std=c++20 -g -Wall -Wextra -Werror
+CXXFLAGS	=	-std=c++20 -g -Wall -Wextra -Werror -I include
 
 all:	$(NAME)
 
