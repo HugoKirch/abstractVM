@@ -24,9 +24,9 @@ jobs:
       - name: empty_avm
         run: |
           make
-          mv tests/task00/task.avm ./tastk.avm
+          mv tests/task00/task.avm ./task.avm
           ./abstractVM task.avm > comp
-          diff expexted comp
+          diff expected comp
 
   extra-tests:
     needs: build
