@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** B-SYN-400-NCY-4-1-abstractVM-hugo.kirch
 ** File description:
-** Main
+** AVM
 */
 
 #pragma once
@@ -18,10 +18,10 @@
 #include <memory>
 
 namespace avm {
-    class Main {
+    class AVM {
         public:
-            Main(int argc, char **argv);
-            ~Main();
+            AVM(int argc, char **argv);
+            ~AVM();
             std::shared_ptr<avm::Parser> getParser();
 
         private:
