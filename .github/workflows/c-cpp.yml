@@ -20,6 +20,7 @@ jobs:
     container: epitechcontent/epitest-docker
 
     steps:
+      - uses: action/checkout@v3
       - name: empty_avm
         run: |
           make
