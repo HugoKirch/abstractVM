@@ -11,7 +11,7 @@
 
 #include <string>
 #include <vector>
-#include <Parser.hpp>
+#include <Chipset.hpp>
 #include <iostream>
 #include <cstring>
 #include <fstream>
@@ -22,9 +22,9 @@ namespace avm {
         public:
             AVM(int argc, char **argv);
             ~AVM();
-            std::shared_ptr<avm::Parser> getParser();
+            std::shared_ptr<avm::Chipset> getParser();
 
         private:
-            std::shared_ptr<avm::Parser> parser;
+            std::shared_ptr<avm::Chipset> parser;
     };
 }

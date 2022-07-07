@@ -11,11 +11,8 @@ int main(int argc, char **argv)
 {
     try {
         std::unique_ptr<avm::AVM> avm = std::make_unique<avm::AVM>(argc, argv);
-        for (std::string command : avm->getParser()->getCommands()) {
-            std::cout << command << std::endl;
-        }
     }
-    catch (Error &e) {  
+    catch (avm::Error &e) {  
         std::cerr << e.what() << std::endl;
         return (84);
     }

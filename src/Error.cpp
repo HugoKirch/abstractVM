@@ -9,16 +9,24 @@
 #include <iostream>
 #include <sstream>
 
-const std::string Error::what()
+const std::string avm::Error::what()
+{
+    return this->message;
+}
+
+avm::Error::Error(std::string const &message)
 {
     std::stringstream ss;
 
-    ss << "\033[1;31mError: " << this->message << "\033[0m";
-    return (ss.str());
+    ss << "\033[1;31mError: " << message << "\033[0m";
+    this->message = ss.str();
 }
 
-Error::Error(std::string const &message)
-: message(message)
+avm::ExecuteError::ExecuteError(std::string const &message, size_t line)
+: Error(message)
 {
+    std::stringstream ss;
 
+    ss << "\033[1;31mLine " << line << " Error: " << message << "\033[0m";
+    this->message = ss.str();
 }
