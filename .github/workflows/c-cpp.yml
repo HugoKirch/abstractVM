@@ -22,8 +22,15 @@ jobs:
       - uses: actions/checkout@v3
       - name: empty_avm
         run: |
+          make
           mv tests/task00/task.avm ./task.avm
           ./abstractVM task.avm > output
+          diff output tests/task00/expected
+      - name: empty_shell_input
+        run: |
+          make
+          mv tests/task00/input ./input
+          cat input | ./abstractVM > output
           diff output tests/task00/expected
 
   extra-tests:
