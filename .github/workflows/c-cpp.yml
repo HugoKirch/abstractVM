@@ -48,7 +48,7 @@ jobs:
         run: |
           make
           mv tests/task05/task.avm ./task.avm
-          ./abstractVM task.avm | cat > output
+          ./abstractVM task.avm 2>&1 | cat > output
           diff output tests/task05/expected
 
   extra-tests:
