@@ -1,4 +1,5 @@
-push int8(200)
+push int8(127)
 push int16(500)
+add
 dump
 exit
