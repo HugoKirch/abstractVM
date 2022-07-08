@@ -1,7 +1,5 @@
 push int8(1)
-add
 dump
-print
 dup
 dump
 exit
