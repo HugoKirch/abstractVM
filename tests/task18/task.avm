@@ -1,0 +1,5 @@
+push int32(655361)
+push int32(-65)
+mul
+dump
+exit

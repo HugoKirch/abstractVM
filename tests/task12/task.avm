@@ -1,0 +1,5 @@
+push int16(3980)
+push int32(-23)
+div
+dump
+exit

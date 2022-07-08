@@ -1,0 +1,9 @@
+push int32(42)
+push int32(33)
+push float(44.55)
+push double(42.42)
+push int32(42)
+dump
+clear
+dump
+exit

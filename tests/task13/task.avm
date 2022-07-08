@@ -1,0 +1,5 @@
+push double(1994)
+push double(16)
+div
+dump
+exit
