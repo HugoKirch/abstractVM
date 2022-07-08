@@ -7,8 +7,18 @@
 
 #include "Double.hpp"
 #include "Factory.hpp"
+#include "Utils.hpp"
 
 avm::Double::Double(std::string v)
+{
+    setValue(v);
+}
+
+avm::Double::~Double()
+{
+}
+
+void avm::Double::setValue(std::string v)
 {
     try {
         this->value = std::stod(v);
@@ -16,12 +26,8 @@ avm::Double::Double(std::string v)
     catch (std::exception &e) {
         throw Error("Invalid double format: " + v);
     }
-    if (v != std::to_string(this->value))
-        throw Error("Invalid double format: x" + v);
-}
-
-avm::Double::~Double()
-{
+    if (v != avm::Utils::removeTrailingZero(std::to_string(this->value)))
+        throw Error("Invalid double format: " + v);
 }
 
 avm::eOperandType avm::Double::getType() const

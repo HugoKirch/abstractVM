@@ -20,3 +20,11 @@ std::vector<std::string> avm::Utils::parseString(std::string line, char separato
     }
     return (result);
 }
+
+std::string avm::Utils::removeTrailingZero(std::string str)
+{
+    str.erase(str.find_last_not_of('0') + 1, std::string::npos );
+    if (str.back() == '.')
+        return (str.substr(0, str.length() - 1));
+    return (str);
+}

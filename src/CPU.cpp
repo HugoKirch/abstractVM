@@ -97,7 +97,7 @@ void avm::CPU::dump()
     if (stack.empty())
         return;
     auto x = stack.top();
-    std::cout << x->toString() << std::endl;
+    std::cout << avm::Utils::removeTrailingZero(x->toString()) << std::endl;
     stack.pop();
     dump();
     stack.push(x);

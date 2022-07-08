@@ -10,6 +10,15 @@
 
 avm::Int16::Int16(std::string v)
 {
+    setValue(v);
+}
+
+avm::Int16::~Int16()
+{
+}
+
+void avm::Int16::setValue(std::string v)
+{
     try {
         this->value = std::stoi(v);
     }
@@ -17,11 +26,7 @@ avm::Int16::Int16(std::string v)
         throw Error("Invalid int16 format: " + v);
     }
     if (v != std::to_string(this->value))
-        throw Error("Invalid int16 format: x" + v);
-}
-
-avm::Int16::~Int16()
-{
+        throw Error("Invalid int16 format: " + v);
 }
 
 avm::eOperandType avm::Int16::getType() const

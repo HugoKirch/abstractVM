@@ -7,22 +7,28 @@
 
 #include "Float.hpp"
 #include "Factory.hpp"
+#include "Utils.hpp"
 
 avm::Float::Float(std::string v)
 {   
+    setValue(v);
+    
+}
+
+avm::Float::~Float()
+{
+}
+#include <iostream>
+void avm::Float::setValue(std::string v)
+{
     try {
         this->value = std::stof(v);
     }
     catch (std::exception &e) {
         throw Error("Invalid float format: " + v);
     }
-    if (v != std::to_string(this->value))
-        throw Error("Invalid float format: x" + v);
-    
-}
-
-avm::Float::~Float()
-{
+    if (v != avm::Utils::removeTrailingZero(std::to_string(this->value)))
+        throw Error("Invalid float format: " + v);
 }
 
 avm::eOperandType avm::Float::getType() const

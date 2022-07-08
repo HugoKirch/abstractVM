@@ -6,6 +6,7 @@
 */
 
 #include "Factory.hpp"
+#include "Utils.hpp"
 
 std::array<std::shared_ptr<avm::IOperand> (*)(const std::string &), 6> avm::Factory::functions = {
     &avm::Factory::createInt8,
@@ -16,11 +17,44 @@ std::array<std::shared_ptr<avm::IOperand> (*)(const std::string &), 6> avm::Fact
     &avm::Factory::createBigDecimal
 };
 
+std::array<std::string (*)(const std::string &), 6> avm::Factory::fconvert = {
+    &avm::Factory::stoi,
+    &avm::Factory::stoi,
+    &avm::Factory::stoi,
+    &avm::Factory::stof,
+    &avm::Factory::stod,
+    &avm::Factory::stold
+};
+
+std::string avm::Factory::convert(eOperandType type, const std::string &value)
+{
+    auto function = avm::Factory::fconvert.at(type);
+
+    return (function(value));
+}
+
+std::string avm::Factory::stoi(const std::string &value)
+{
+    return (std::to_string(std::stoi(value)));
+}
+std::string avm::Factory::stof(const std::string &value)
+{
+    return (std::to_string(std::stof(value)));
+}
+std::string avm::Factory::stod(const std::string &value)
+{
+    return (std::to_string(std::stod(value)));
+}
+std::string avm::Factory::stold(const std::string &value)
+{
+    return (std::to_string(std::stold(value)));
+}
+
 std::shared_ptr<avm::IOperand> avm::Factory::createOperand(avm::eOperandType type, const std::string &value)
 {
     auto function = avm::Factory::functions.at(type);
 
-    return (function(value));
+    return (function(avm::Utils::removeTrailingZero(value)));
 }
 
 std::shared_ptr<avm::IOperand> avm::Factory::createInt8(const std::string &value)

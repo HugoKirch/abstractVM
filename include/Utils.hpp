@@ -18,5 +18,6 @@ namespace avm {
     class Utils {
         public:
             static std::vector<std::string> parseString(std::string line, char separator);
+            static std::string removeTrailingZero(std::string str);
     };
 }

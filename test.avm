@@ -1,9 +1,6 @@
-push int8(21.1)
-push int8(2)
-push int8(3)
-store 2
-dump
-load 2
+push float(1)
+push float(3)
+div
 dump
 exit
 
