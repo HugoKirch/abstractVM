@@ -51,121 +51,121 @@ jobs:
       - name: Assert
         run: |
           mv tests/task06/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task06/expected
 
       - name: Add 1
         run: |
           mv tests/task07/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task07/expected
 
       - name: Add 2
         run: |
           mv tests/task08/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task08/expected
 
       - name: Add 3
         run: |
           mv tests/task09/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task09/expected
 
       - name: Sub
         run: |
           mv tests/task10/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task10/expected
 
       - name: Sub 2
         run: |
           mv tests/task11/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task11/expected
 
       - name: Sub 3
         run: |
           mv tests/task12/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task12/expected
 
       - name: Div
         run: |
           mv tests/task13/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task13/expected
 
       - name: Div 2
         run: |
           mv tests/task14/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task14/expected
 
       - name: Div 3
         run: |
           mv tests/task15/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task15/expected
 
       - name: Mod
         run: |
           mv tests/task16/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task16/expected
 
       - name: Mod 2
         run: |
           mv tests/task17/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task17/expected
 
       - name: Mul
         run: |
           mv tests/task18/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task18/expected
 
       - name: Mul 2
         run: |
           mv tests/task19/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task19/expected
 
       - name: Dup
         run: |
           mv tests/task20/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task20/expected
 
       - name: Pop
         run: |
           mv tests/task21/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task21/expected
 
       - name: Print
         run: |
           mv tests/task22/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task22/expected
 
       - name: Push
         run: |
           mv tests/task23/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task23/expected
 
       - name: Swap
         run: |
           mv tests/task24/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task24/expected
 
       - name: Clear
         run: |
           mv tests/task25/task.avm ./task.avm
-          ./abstractVM task.avm 2>&1 | cat > output
+          ./abstractVM task.avm | cat > output
           diff output tests/task25/expected
 
 
