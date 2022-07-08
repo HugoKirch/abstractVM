@@ -61,7 +61,7 @@ void avm::CPU::push(std::string v)
 }
 void avm::CPU::pop()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.empty())
         throw Error("Stack is empty");
     stack.pop();
@@ -73,7 +73,7 @@ void avm::CPU::clear()
 }
 void avm::CPU::dup()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.empty())
         throw Error("Stack is empty");
     auto a = stack.top();
@@ -82,7 +82,7 @@ void avm::CPU::dup()
 }
 void avm::CPU::swap()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.size() < 2)
         throw Error("stack must contains 2 values");
     std::shared_ptr<avm::IOperand> a = stack.top();
@@ -115,7 +115,7 @@ void avm::CPU::assert(std::string v)
 }
 void avm::CPU::add()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.size() < 2)
         throw Error("stack must contains 2 values");
     std::shared_ptr<avm::IOperand> a = stack.top();
@@ -127,7 +127,7 @@ void avm::CPU::add()
 }
 void avm::CPU::sub()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.size() < 2)
         throw Error("stack must contains 2 values");
     std::shared_ptr<avm::IOperand> a = stack.top();
@@ -139,7 +139,7 @@ void avm::CPU::sub()
 }
 void avm::CPU::mul()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.size() < 2)
         throw Error("stack must contains 2 values");
     std::shared_ptr<avm::IOperand> a = stack.top();
@@ -151,7 +151,7 @@ void avm::CPU::mul()
 }
 void avm::CPU::div()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.size() < 2)
         throw Error("stack must contains 2 values");
     std::shared_ptr<avm::IOperand> a = stack.top();
@@ -168,7 +168,7 @@ void avm::CPU::div()
 }
 void avm::CPU::mod()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.size() < 2)
         throw Error("stack must contains 2 values");
     std::shared_ptr<avm::IOperand> a = stack.top();
@@ -185,7 +185,7 @@ void avm::CPU::mod()
 }
 void avm::CPU::load(std::string v)
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     try {
         int i = std::stoi(v);
         stack.push(this->memory.removeRegistry(i));
@@ -196,7 +196,7 @@ void avm::CPU::load(std::string v)
 }
 void avm::CPU::store(std::string v)
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.empty())
         throw Error("Stack is empty");
     try {
@@ -209,7 +209,7 @@ void avm::CPU::store(std::string v)
 }
 void avm::CPU::print()
 {
-    auto stack = this->memory.getStack();
+    auto &stack = this->memory.getStack();
     if (stack.empty())
         throw Error("Stack is empty");
     auto a = stack.top();
