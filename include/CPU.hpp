@@ -14,6 +14,7 @@
 #include <iostream>
 #include "Utils.hpp"
 #include "Memory.hpp"
+#include "Operand.hpp"
 
 namespace avm {
     class CPU {

@@ -10,7 +10,7 @@
 #include <vector>
 #include <stack>
 #include <memory>
-#include "IOperand.hpp"
+#include "Operand.hpp"
 #include "Error.hpp"
 
 namespace avm {

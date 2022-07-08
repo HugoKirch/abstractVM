@@ -24,7 +24,7 @@ std::string avm::CPU::parseValue(std::string v)
 
 void avm::CPU::push(std::string v)
 {
-   // std::shared_ptr<avm::IOperand> operand = nullptr;
+   // std::shared_ptr<avm::Operand> operand = nullptr;
   //  this->memory->getStack()->push(operand);
     std::cout << parseValue(v) << std::endl;
 }
@@ -54,23 +54,58 @@ void avm::CPU::assert(std::string v)
 }
 void avm::CPU::add()
 {
-
+    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> c = *a + b;
+    this->memory->getStack()->push(c);
 }
 void avm::CPU::sub()
 {
-
+    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> c = *a - b;
+    this->memory->getStack()->push(c);
 }
 void avm::CPU::mul()
 {
-
+    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> c = *a * b;
+    this->memory->getStack()->push(c);
 }
 void avm::CPU::div()
 {
-
+    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    try {
+        std::shared_ptr<avm::IOperand> c = *a / b;
+        this->memory->getStack()->push(c);
+    }
+    catch (std::exception e) {
+        throw Error(e.what());
+    }
 }
 void avm::CPU::mod()
 {
-
+    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
+    this->memory->getStack()->pop();
+    try {
+        std::shared_ptr<avm::IOperand> c = *a % b;
+        this->memory->getStack()->push(c);
+    }
+    catch (std::exception e) {
+        throw Error(e.what());
+    }
 }
 void avm::CPU::load(std::string v)
 {

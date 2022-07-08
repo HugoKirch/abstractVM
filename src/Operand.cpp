@@ -6,6 +6,7 @@
 */
 
 #include "Operand.hpp"
+#include "Factory.hpp"
 
 avm::Operand::Operand()
 {
@@ -17,21 +18,42 @@ avm::Operand::~Operand()
 
 std::shared_ptr<avm::IOperand> avm::Operand::operator+(const std::shared_ptr<avm::IOperand> rhs) const
 {
+    avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
 
+    std::string value = std::to_string(std::stold(this->toString()) + std::stold(rhs->toString()));
+
+    avm::Factory::createOperand(type, value);
 }
 std::shared_ptr<avm::IOperand> avm::Operand::operator-(const std::shared_ptr<avm::IOperand> rhs) const
 {
+    avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
+
+    std::string value = std::to_string(std::stold(this->toString()) - std::stold(rhs->toString()));
+
+    avm::Factory::createOperand(type, value);
 
 }
 std::shared_ptr<avm::IOperand> avm::Operand::operator*(const std::shared_ptr<avm::IOperand> rhs) const
 {
+    avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
 
+    std::string value = std::to_string(std::stold(this->toString()) * std::stold(rhs->toString()));
+
+    avm::Factory::createOperand(type, value);
 }
 std::shared_ptr<avm::IOperand> avm::Operand::operator/(const std::shared_ptr<avm::IOperand> rhs) const
 {
+    avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
 
+    std::string value = std::to_string(std::stold(this->toString()) / std::stold(rhs->toString()));
+
+    avm::Factory::createOperand(type, value);
 }
 std::shared_ptr<avm::IOperand> avm::Operand::operator%(const std::shared_ptr<avm::IOperand> rhs) const
 {
+    avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
 
+    std::string value = std::to_string(std::stoi(this->toString()) % std::stoi(rhs->toString()));
+
+    avm::Factory::createOperand(type, value);
 }
