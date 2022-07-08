@@ -20,33 +20,30 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: compilation
+        run: make
       - name: empty_avm
         run: |
-          make
           mv tests/task00/task.avm ./task.avm
           ./abstractVM task.avm > output
           diff output tests/task00/expected
       - name: empty_shell_input
         run: |
-          make
           mv tests/task01/input ./input
           cat input | ./abstractVM > output
           diff output tests/task00/expected
       - name: simple test
         run: |
-          make
           mv tests/task02/task.avm ./task.avm
           ./abstractVM task.avm > output
           diff output tests/task02/expected
       - name: int addition test
         run: |
-          make
           mv tests/task03/task.avm ./task.avm
           ./abstractVM task.avm > output
           diff output tests/task03/expected
       - name: program without exit statement
         run: |
-          make
           mv tests/task05/task.avm ./task.avm
           ./abstractVM task.avm 2>&1 | cat > output
           diff output tests/task05/expected
