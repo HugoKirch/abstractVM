@@ -2,31 +2,31 @@
 ** EPITECH PROJECT, 2022
 ** B-SYN-400-NCY-4-1-abstractVM-hugo.kirch
 ** File description:
-** Int8
+** Int16
 */
 
-#include "Int8.hpp"
+#include "Int16.hpp"
 #include "Factory.hpp"
 
-avm::Int8::Int8(std::string v)
+avm::Int16::Int16(std::string v)
 {
     this->value = std::stoi(v);
 }
 
-avm::Int8::~Int8()
+avm::Int16::~Int16()
 {
 }
 
-avm::eOperandType avm::Int8::getType() const
+avm::eOperandType avm::Int16::getType() const
 {
-    return (avm::INT8);
+    return (avm::INT16);
 }
 
-std::string avm::Int8::toString() const
+std::string avm::Int16::toString() const
 {
     std::string str = std::to_string(this->value);
 
-/*    if (this->value.size() == 0)
+ /*   if (this->value.size() == 0)
         return (0);
     if (this->negative)
         str += '-';

@@ -22,13 +22,6 @@ std::string avm::CPU::parseValue(std::string v)
     return (list.at(1));
 }
 
-/*std::shared_ptr<avm::IOperand> avm::CPU::createOperand(std::string v)
-{
-    (void)v;
-    std::shared_ptr<avm::IOperand> operand;
-    return (operand);
-}*/
-
 void avm::CPU::push(std::string v)
 {
     std::shared_ptr<avm::IOperand> operand = nullptr;

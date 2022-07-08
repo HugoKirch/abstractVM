@@ -21,7 +21,6 @@ namespace avm {
             CPU();
             ~CPU();
             std::string parseValue(std::string v);
-        //    std::shared_ptr<avm::IOperand> createOperand(std::string v);
             void push(std::string v);
             void pop(std::string v) {(void)v;pop();}
             void pop();

@@ -2,24 +2,26 @@
 ** EPITECH PROJECT, 2022
 ** B-SYN-400-NCY-4-1-abstractVM-hugo.kirch
 ** File description:
-** Int8
+** BigDecimal
 */
 
 #pragma once
 
 #include "Operand.hpp"
 #include <array>
+#include <limits>
 
 namespace avm{
-    class Int8 : public Operand {
+    class BigDecimal : public Operand {
         public:
-            Int8(std::string v);
-            ~Int8();
+            BigDecimal(std::string v);
+            ~BigDecimal();
             std::string toString() const;
             eOperandType getType() const;
 
         private:
             bool negative;
-            char value;
+            long double value;
+            size_t decimal;
     };
 }

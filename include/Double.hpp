@@ -2,24 +2,26 @@
 ** EPITECH PROJECT, 2022
 ** B-SYN-400-NCY-4-1-abstractVM-hugo.kirch
 ** File description:
-** Int8
+** Double
 */
 
 #pragma once
 
 #include "Operand.hpp"
 #include <array>
+#include <limits>
 
 namespace avm{
-    class Int8 : public Operand {
+    class Double : public Operand {
         public:
-            Int8(std::string v);
-            ~Int8();
+            Double(std::string v);
+            ~Double();
             std::string toString() const;
             eOperandType getType() const;
 
         private:
             bool negative;
-            char value;
+            double value;
+            size_t decimal;
     };
 }
