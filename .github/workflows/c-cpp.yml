@@ -45,7 +45,7 @@ jobs:
       - name: shell without exit statement
         run: |
           mv tests/task04/input ./input
-          cat input | abstractVM 2>&1 | cat > output
+          cat input | ./abstractVM 2>&1 | cat > output
           diff output tests/task04/expected
       - name: program without exit statement
         run: |
