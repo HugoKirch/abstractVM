@@ -32,6 +32,18 @@ jobs:
           mv tests/task01/input ./input
           cat input | ./abstractVM > output
           diff output tests/task00/expected
+      - name: simple test
+        run: |
+          make
+          mv tests/task02/task.avm ./task.avm
+          ./abstractVM task.avm > output
+          diff output tests/task02/expected
+      - name: int addition test
+        run: |
+          make
+          mv tests/task03/task.avm ./task.avm
+          ./abstractVM task.avm > output
+          diff output tests/task03/expected
 
   extra-tests:
     needs: build
