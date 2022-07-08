@@ -23,13 +23,17 @@ void avm::Chipset::addCommand(std::string str)
 avm::Chipset::Chipset(std::string filename)
 {
     std::string tmp;
+    bool exit = false;
 
     if (filename.length() == 0) {
         while (1) {
             getline(std::cin, tmp);
             if (!tmp.compare(";;"))
                 break;
-            this->addCommand(tmp);
+            if (!exit)
+                this->addCommand(tmp);
+            if (!tmp.compare("exit"))
+                exit = true;
         }
     }
     else {
@@ -45,10 +49,15 @@ avm::Chipset::Chipset(std::string filename)
         if (extension.generic_string().compare(".avm"))
             throw avm::Error("Bad file extension: '" + extension.generic_string() + "' instead of '.avm'");
 
-        while (getline(file, tmp)) {
+        while (getline(file, tmp) && !exit) {
             this->addCommand(tmp);
+            if (!tmp.compare("exit"))
+                exit = true;
         }
         file.close();
+    }
+    if (!exit) {
+        throw avm::Error("Commands not contains exit command");
     }
     this->cpu = std::make_unique<avm::CPU>();
     this->initFonctions();

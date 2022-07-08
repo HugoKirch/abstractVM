@@ -11,6 +11,7 @@ avm::Memory::Memory()
 {
     for (size_t i = 0; i < (size_t)16; i++)
         this->registry[i] = nullptr;
+    this->stack = std::make_shared<std::stack<std::shared_ptr<avm::IOperand>>>();
 }
 
 avm::Memory::~Memory()

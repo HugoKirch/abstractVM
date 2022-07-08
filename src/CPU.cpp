@@ -24,8 +24,8 @@ std::string avm::CPU::parseValue(std::string v)
 
 void avm::CPU::push(std::string v)
 {
-    std::shared_ptr<avm::IOperand> operand = nullptr;
-    this->memory->getStack()->push(operand);
+   // std::shared_ptr<avm::IOperand> operand = nullptr;
+  //  this->memory->getStack()->push(operand);
     std::cout << parseValue(v) << std::endl;
 }
 void avm::CPU::pop()

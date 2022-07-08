@@ -1,4 +1,6 @@
 push a
 pop;;zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+exit
+pop
 
 
