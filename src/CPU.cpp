@@ -108,10 +108,10 @@ void avm::CPU::assert(std::string v)
     std::shared_ptr<avm::IOperand> a = this->strToIOperand(v);
     auto b = this->memory.getStack().top();
 
+    if (a->toString() != b->toString()) 
+        throw Error("assert value failed: " + a->toString() + " != " + b->toString());
     if (a->getType() != b->getType()) 
-        throw Error("assert value failed: " + a->toString() + " !=  " + b->toString());
-    if (a->getType() != b->getType()) 
-        throw Error("assert type failed: " + this->types[a->getType()] + " !=  " + this->types[b->getType()]);
+        throw Error("assert type failed: " + this->types[a->getType()] + " != " + this->types[b->getType()]);
 }
 void avm::CPU::add()
 {
@@ -199,7 +199,7 @@ void avm::CPU::print()
         throw Error("Stack is empty");
     auto a = stack.top();
     if (a->getType() != avm::INT8) 
-        throw Error("assert type failed: " + std::to_string(a->getType()) + " !=  " + std::to_string(avm::INT8));
+        throw Error("assert type failed: " + this->types[a->getType()] + " != " + this->types[avm::INT8]);
     std::cout << (char)a->toString().front() << std::endl;
 }
 void avm::CPU::exit()
