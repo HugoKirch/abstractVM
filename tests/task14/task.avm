@@ -1,5 +1,5 @@
-push int32(3434355)
-push int16(2)
+push double(1994)
+push double(16)
 div
 dump
 exit

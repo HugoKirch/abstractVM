@@ -1,5 +1,5 @@
-push int16(1337)
-push int16(4)
+push int32(-1334347)
+push int32(434)
 mod
 dump
 exit

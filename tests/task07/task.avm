@@ -1,3 +1,5 @@
-push double(42.2)
-assert double(42.2)
+push int32(1808)
+push int32(0)
+add
+assert int32(1808)
 exit

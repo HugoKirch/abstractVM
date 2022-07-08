@@ -1,5 +1,5 @@
-push int16(3980)
-push int32(-23)
-div
+push int32(453656)
+push int16(3656)
+sub
 dump
 exit

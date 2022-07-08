@@ -1,14 +1,22 @@
-push int32(89042)
-push int32(33333)
-push float(44.55)
-push double(-42.42)
-push int32(678)
-push int32(-434)
-push int32(-3453454)
-push double(3.14159)
-push int16(51)
-push int16(49)
-push int16(2432)
-push int32(3)
-dump
+push int8(104)
+push int8(99)
+push int8(101)
+push int8(116)
+push int8(105)
+push int8(112)
+push int8(69)
+print
+pop
+print
+pop
+print
+pop
+print
+pop
+print
+pop
+print
+pop
+print
+pop
 exit
