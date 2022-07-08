@@ -115,37 +115,49 @@ void avm::CPU::assert(std::string v)
 }
 void avm::CPU::add()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
-    this->memory.getStack().pop();
-    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
-    this->memory.getStack().pop();
+    auto stack = this->memory.getStack();
+    if (stack.size() < 2)
+        throw Error("stack must contains 2 values");
+    std::shared_ptr<avm::IOperand> a = stack.top();
+    stack.pop();
+    std::shared_ptr<avm::IOperand> b = stack.top();
+    stack.pop();
     std::shared_ptr<avm::IOperand> c = *b + a;
-    this->memory.getStack().push(c);
+    stack.push(c);
 }
 void avm::CPU::sub()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
-    this->memory.getStack().pop();
-    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
-    this->memory.getStack().pop();
+    auto stack = this->memory.getStack();
+    if (stack.size() < 2)
+        throw Error("stack must contains 2 values");
+    std::shared_ptr<avm::IOperand> a = stack.top();
+    stack.pop();
+    std::shared_ptr<avm::IOperand> b = stack.top();
+    stack.pop();
     std::shared_ptr<avm::IOperand> c = *b - a;
-    this->memory.getStack().push(c);
+    stack.push(c);
 }
 void avm::CPU::mul()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
-    this->memory.getStack().pop();
-    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
-    this->memory.getStack().pop();
+    auto stack = this->memory.getStack();
+    if (stack.size() < 2)
+        throw Error("stack must contains 2 values");
+    std::shared_ptr<avm::IOperand> a = stack.top();
+    stack.pop();
+    std::shared_ptr<avm::IOperand> b = stack.top();
+    stack.pop();
     std::shared_ptr<avm::IOperand> c = *b * a;
-    this->memory.getStack().push(c);
+    stack.push(c);
 }
 void avm::CPU::div()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
-    this->memory.getStack().pop();
-    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
-    this->memory.getStack().pop();
+    auto stack = this->memory.getStack();
+    if (stack.size() < 2)
+        throw Error("stack must contains 2 values");
+    std::shared_ptr<avm::IOperand> a = stack.top();
+    stack.pop();
+    std::shared_ptr<avm::IOperand> b = stack.top();
+    stack.pop();
     try {
         std::shared_ptr<avm::IOperand> c = *b / a;
         this->memory.getStack().push(c);
@@ -156,10 +168,13 @@ void avm::CPU::div()
 }
 void avm::CPU::mod()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
-    this->memory.getStack().pop();
-    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
-    this->memory.getStack().pop();
+    auto stack = this->memory.getStack();
+    if (stack.size() < 2)
+        throw Error("stack must contains 2 values");
+    std::shared_ptr<avm::IOperand> a = stack.top();
+    stack.pop();
+    std::shared_ptr<avm::IOperand> b = stack.top();
+    stack.pop();
     try {
         std::shared_ptr<avm::IOperand> c = *b % a;
         this->memory.getStack().push(c);

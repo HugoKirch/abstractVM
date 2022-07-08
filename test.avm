@@ -1,7 +1,8 @@
-push int16(1)
-push int8(2)
+push int8(1)
 add
 dump
 print
+dup
+dump
 exit
 
