@@ -24,7 +24,6 @@ avm::eOperandType avm::CPU::getType(std::string t)
 {
     int i = 0;
 
-    avm::eOperandType e = (avm::eOperandType) 0;
     for (std::string str : this->types) {
         if (!t.compare(str))
             return ((avm::eOperandType)i);
@@ -162,7 +161,7 @@ void avm::CPU::div()
         std::shared_ptr<avm::IOperand> c = *b / a;
         this->memory.getStack().push(c);
     }
-    catch (std::exception e) {
+    catch (std::exception &e) {
         throw Error(e.what());
     }
 }
@@ -179,7 +178,7 @@ void avm::CPU::mod()
         std::shared_ptr<avm::IOperand> c = *b % a;
         this->memory.getStack().push(c);
     }
-    catch (std::exception e) {
+    catch (std::exception &e) {
         throw Error(e.what());
     }
 }
