@@ -16,6 +16,8 @@ avm::Int32::Int32(std::string v)
     catch (std::exception &e) {
         throw Error("Invalid int32 format: " + v);
     }
+    if (v != std::to_string(this->value))
+        throw Error("Invalid int32 format: x" + v);
 }
 
 avm::Int32::~Int32()

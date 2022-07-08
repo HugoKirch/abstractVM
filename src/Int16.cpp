@@ -16,6 +16,8 @@ avm::Int16::Int16(std::string v)
     catch (std::exception &e) {
         throw Error("Invalid int16 format: " + v);
     }
+    if (v != std::to_string(this->value))
+        throw Error("Invalid int16 format: x" + v);
 }
 
 avm::Int16::~Int16()

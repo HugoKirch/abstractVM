@@ -38,7 +38,7 @@ std::shared_ptr<avm::IOperand> avm::CPU::strToIOperand(std::string v)
     std::vector<std::string> values = avm::Utils::parseString(value, '(');
     if (values.size() != 2)
         throw Error("Invalid operand format: " + v);
-    values.back().back() = '\0';
+    values.back() = values.back().substr(0, values.back().length() - 1);
     std::shared_ptr<avm::IOperand> operand = avm::Factory::createOperand(getType(values.front()), values.back());
     return (operand);
 }

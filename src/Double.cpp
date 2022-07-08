@@ -16,6 +16,8 @@ avm::Double::Double(std::string v)
     catch (std::exception &e) {
         throw Error("Invalid double format: " + v);
     }
+    if (v != std::to_string(this->value))
+        throw Error("Invalid double format: x" + v);
 }
 
 avm::Double::~Double()

@@ -16,6 +16,8 @@ avm::BigDecimal::BigDecimal(std::string v)
     catch (std::exception &e) {
         throw Error("Invalid bigdecimal format: " + v);
     }
+    if (v != std::to_string(this->value))
+        throw Error("Invalid bigdecimal format: x" + v);
 }
 
 avm::BigDecimal::~BigDecimal()

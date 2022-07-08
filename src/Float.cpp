@@ -16,6 +16,9 @@ avm::Float::Float(std::string v)
     catch (std::exception &e) {
         throw Error("Invalid float format: " + v);
     }
+    if (v != std::to_string(this->value))
+        throw Error("Invalid float format: x" + v);
+    
 }
 
 avm::Float::~Float()
