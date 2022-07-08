@@ -187,7 +187,7 @@ void avm::CPU::load(std::string v)
 {
     auto &stack = this->memory.getStack();
     try {
-        int i = std::stoi(v);
+        int i = std::stoi(parseValue(v));
         stack.push(this->memory.removeRegistry(i));
     }
     catch (std::exception &e){
@@ -200,8 +200,9 @@ void avm::CPU::store(std::string v)
     if (stack.empty())
         throw Error("Stack is empty");
     try {
-        int i = std::stoi(v);
+        int i = std::stoi(parseValue(v));
         this->memory.storeRegistry(i, stack.top());
+        stack.pop();
     }
     catch (std::exception &e){
         throw Error("invalid integer format " + v);
