@@ -23,146 +23,171 @@ jobs:
       - name: compilation
         run: make
       - name: empty_avm
+        continue-on-error: true
         run: |
           mv tests/task00/task.avm ./task.avm
           ./abstractVM task.avm > output
           diff output tests/task00/expected
       - name: empty_shell_input
+        continue-on-error: true
         run: |
           mv tests/task01/input ./input
           cat input | ./abstractVM > output
           diff output tests/task00/expected
       - name: simple test
+        continue-on-error: true
         run: |
           mv tests/task02/task.avm ./task.avm
           ./abstractVM task.avm > output
           diff output tests/task02/expected
       - name: int addition test
+        continue-on-error: true
         run: |
           mv tests/task03/task.avm ./task.avm
           ./abstractVM task.avm > output
           diff output tests/task03/expected
       - name: program without exit statement
+        continue-on-error: true
         run: |
           mv tests/task05/task.avm ./task.avm
           ./abstractVM task.avm 2>&1 | cat > output
           diff output tests/task05/expected
 
       - name: Assert
+        continue-on-error: true
         run: |
           mv tests/task06/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task06/expected
 
       - name: Add 1
+        continue-on-error: true
         run: |
           mv tests/task07/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task07/expected
 
       - name: Add 2
+        continue-on-error: true
         run: |
           mv tests/task08/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task08/expected
 
       - name: Add 3
+        continue-on-error: true
         run: |
           mv tests/task09/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task09/expected
 
       - name: Sub
+        continue-on-error: true
         run: |
           mv tests/task10/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task10/expected
 
       - name: Sub 2
+        continue-on-error: true
         run: |
           mv tests/task11/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task11/expected
 
       - name: Sub 3
+        continue-on-error: true
         run: |
           mv tests/task12/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task12/expected
 
       - name: Div
+        continue-on-error: true
         run: |
           mv tests/task13/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task13/expected
 
       - name: Div 2
+        continue-on-error: true
         run: |
           mv tests/task14/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task14/expected
 
       - name: Div 3
+        continue-on-error: true
         run: |
           mv tests/task15/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task15/expected
 
       - name: Mod
+        continue-on-error: true
         run: |
           mv tests/task16/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task16/expected
 
       - name: Mod 2
+        continue-on-error: true
         run: |
           mv tests/task17/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task17/expected
 
       - name: Mul
+        continue-on-error: true
         run: |
           mv tests/task18/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task18/expected
 
       - name: Mul 2
+        continue-on-error: true
         run: |
           mv tests/task19/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task19/expected
 
       - name: Dup
+        continue-on-error: true
         run: |
           mv tests/task20/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task20/expected
 
       - name: Pop
+        continue-on-error: true
         run: |
           mv tests/task21/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task21/expected
 
       - name: Print
+        continue-on-error: true
         run: |
           mv tests/task22/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task22/expected
 
       - name: Push
+        continue-on-error: true
         run: |
           mv tests/task23/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task23/expected
 
       - name: Swap
+        continue-on-error: true
         run: |
           mv tests/task24/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
           diff output tests/task24/expected
 
       - name: Clear
+        continue-on-error: true
         run: |
           mv tests/task25/task.avm ./task.avm
           ./abstractVM task.avm | cat > output
