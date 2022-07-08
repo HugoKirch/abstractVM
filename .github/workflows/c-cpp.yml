@@ -44,6 +44,12 @@ jobs:
           mv tests/task03/task.avm ./task.avm
           ./abstractVM task.avm > output
           diff output tests/task03/expected
+      - name: program without exit statement
+        run: |
+          make
+          mv tests/task05/task.avm ./task.avm
+          ./abstractVM task.avm | cat > output
+          diff output tests/task05/expected
 
   extra-tests:
     needs: build
