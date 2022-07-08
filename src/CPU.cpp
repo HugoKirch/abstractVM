@@ -89,8 +89,8 @@ void avm::CPU::swap()
     stack.pop();
     std::shared_ptr<avm::IOperand> b  = stack.top();
     stack.pop();
-    stack.push(a);
     stack.push(b);
+    stack.push(a);
 }
 void avm::CPU::dump()
 {

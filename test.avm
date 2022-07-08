@@ -1,6 +1,7 @@
 push int8(1)
-dump
-dup
+push int8(2)
+push int8(3)
+swap
 dump
 exit
 
