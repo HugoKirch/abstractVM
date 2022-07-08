@@ -10,7 +10,12 @@
 
 avm::Int32::Int32(std::string v)
 {
-    this->value = std::stoi(v);
+    try {
+        this->value = std::stoi(v);
+    }
+    catch (std::exception &e) {
+        throw Error("Invalid int32 format: " + v);
+    }
 }
 
 avm::Int32::~Int32()

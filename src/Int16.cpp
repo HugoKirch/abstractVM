@@ -10,7 +10,12 @@
 
 avm::Int16::Int16(std::string v)
 {
-    this->value = std::stoi(v);
+    try {
+        this->value = std::stoi(v);
+    }
+    catch (std::exception &e) {
+        throw Error("Invalid int16 format: " + v);
+    }
 }
 
 avm::Int16::~Int16()

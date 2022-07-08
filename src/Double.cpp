@@ -10,7 +10,12 @@
 
 avm::Double::Double(std::string v)
 {
-    this->value = std::stod(v);
+    try {
+        this->value = std::stod(v);
+    }
+    catch (std::exception &e) {
+        throw Error("Invalid double format: " + v);
+    }
 }
 
 avm::Double::~Double()

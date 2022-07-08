@@ -9,8 +9,13 @@
 #include "Factory.hpp"
 
 avm::Float::Float(std::string v)
-{
-    this->value = std::stof(v);
+{   
+    try {
+        this->value = std::stof(v);
+    }
+    catch (std::exception &e) {
+        throw Error("Invalid float format: " + v);
+    }
 }
 
 avm::Float::~Float()

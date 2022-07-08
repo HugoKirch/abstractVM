@@ -12,15 +12,19 @@
 #include <map>
 #include <memory>
 #include <iostream>
+#include <array>
 #include "Utils.hpp"
 #include "Memory.hpp"
 #include "Operand.hpp"
+#include "Factory.hpp"
 
 namespace avm {
     class CPU {
         public:
             CPU();
             ~CPU();
+            std::shared_ptr<avm::IOperand> strToIOperand(std::string v);
+            avm::eOperandType getType(std::string t);
             std::string parseValue(std::string v);
             void push(std::string v);
             void pop(std::string v) {(void)v;pop();}
@@ -53,5 +57,6 @@ namespace avm {
 
         private:
             std::unique_ptr<avm::Memory> memory;
+            std::array<std::string, 6> types;
     };
 }

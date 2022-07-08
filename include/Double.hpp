@@ -8,6 +8,7 @@
 #pragma once
 
 #include "Operand.hpp"
+#include "Error.hpp"
 #include <array>
 #include <limits>
 

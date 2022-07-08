@@ -10,7 +10,12 @@
 
 avm::BigDecimal::BigDecimal(std::string v)
 {
-    this->value = std::stold(v);
+    try {
+        this->value = std::stold(v);
+    }
+    catch (std::exception &e) {
+        throw Error("Invalid bigdecimal format: " + v);
+    }
 }
 
 avm::BigDecimal::~BigDecimal()
