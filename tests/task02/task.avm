@@ -1,0 +1,6 @@
+push int8(200)
+push int16(500)
+swap
+dup
+dump
+exit

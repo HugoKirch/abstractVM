@@ -1,0 +1,4 @@
+push int8(200)
+push int16(500)
+dump
+exit
