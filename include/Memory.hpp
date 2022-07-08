@@ -20,10 +20,10 @@ namespace avm {
             ~Memory();
             std::shared_ptr<avm::IOperand> removeRegistry(int i);
             void storeRegistry(int i, std::shared_ptr<IOperand> v);
-            std::shared_ptr<std::stack<std::shared_ptr<avm::IOperand>>> getStack();
+            std::stack<std::shared_ptr<avm::IOperand>> &getStack();
 
         private:
-            std::shared_ptr<std::stack<std::shared_ptr<avm::IOperand>>> stack;
+            std::stack<std::shared_ptr<avm::IOperand>> stack;
             std::shared_ptr<avm::IOperand> registry[16];
     };
 }

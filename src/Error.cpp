@@ -27,6 +27,6 @@ avm::ExecuteError::ExecuteError(std::string const &message, size_t line)
 {
     std::stringstream ss;
 
-    ss << "\033[1;31mLine " << line << " Error: " << message << "\033[0m";
+    ss << "\033[1;31mLine " << line << " " << message << "\033[0m";
     this->message = ss.str();
 }

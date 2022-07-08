@@ -56,7 +56,7 @@ namespace avm {
             void exit();
 
         private:
-            std::unique_ptr<avm::Memory> memory;
+            avm::Memory memory;
             std::array<std::string, 6> types;
     };
 }

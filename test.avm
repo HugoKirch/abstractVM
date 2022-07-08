@@ -1,6 +1,6 @@
-push a
-pop;;zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+push int8(1)
+push int8(2)
+add
+dump
 exit
-pop
-
 

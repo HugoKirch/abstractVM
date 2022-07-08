@@ -99,9 +99,10 @@ void avm::Chipset::execute()
     std::string function;
 
     for (std::string command : this->commands) {
-        function = avm::Utils::parseString(command, ' ').front();
+        std::vector<std::string> commandparsed = avm::Utils::parseString(command, ' ');
+        function = commandparsed.front();
         if (!this->functions.count(function)) {
-            throw avm::ExecuteError("command " + command + " not found", line);
+            throw avm::ExecuteError("command " + function + " not found", line);
         }
         try {
             ((*(this->cpu)).*(functions[function]))(command);

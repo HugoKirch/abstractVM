@@ -8,6 +8,7 @@
 #include "CPU.hpp"
 
 avm::CPU::CPU()
+: memory()
 {
     this->types = {
         "int8",
@@ -35,7 +36,7 @@ avm::eOperandType avm::CPU::getType(std::string t)
 std::shared_ptr<avm::IOperand> avm::CPU::strToIOperand(std::string v)
 {
     std::string value = parseValue(v);
-    std::vector<std::string> values = avm::Utils::parseString(v, '(');
+    std::vector<std::string> values = avm::Utils::parseString(value, '(');
     if (values.size() != 2)
         throw Error("Invalid operand format: " + v);
     values.back().back() = '\0';
@@ -46,67 +47,66 @@ std::shared_ptr<avm::IOperand> avm::CPU::strToIOperand(std::string v)
 std::string avm::CPU::parseValue(std::string v)
 {
     std::vector<std::string> list = avm::Utils::parseString(v, ' ');
-    std::cout << "size: " << list.size() << std::endl;
     if (list.size() < 2)
         throw Error("No parameter");
     else if (list.size() > 2)
         throw Error("Too many parameters");
-    return (list.at(1));
+    return (list.back());
 }
 
 void avm::CPU::push(std::string v)
 {
     std::shared_ptr<avm::IOperand> operand = this->strToIOperand(v);
-    this->memory->getStack()->push(operand);
+    this->memory.getStack().push(operand); 
 }
 void avm::CPU::pop()
 {
-    auto stack = this->memory->getStack();
-    if (stack->empty())
+    auto stack = this->memory.getStack();
+    if (stack.empty())
         throw Error("Stack is empty");
-    stack->pop();
+    stack.pop();
 }
 void avm::CPU::clear()
 {
-    for (size_t i = 0; i < this->memory->getStack()->size(); i++)
-    this->memory->getStack()->pop();
+    for (size_t i = 0; i < this->memory.getStack().size(); i++)
+    this->memory.getStack().pop();
 }
 void avm::CPU::dup()
 {
-    auto stack = this->memory->getStack();
-    if (stack->empty())
+    auto stack = this->memory.getStack();
+    if (stack.empty())
         throw Error("Stack is empty");
-    auto a = stack->top();
+    auto a = stack.top();
     auto b = avm::Factory::createOperand(a->getType(), a->toString());
-    stack->push(b);
+    stack.push(b);
 }
 void avm::CPU::swap()
 {
-    auto stack = this->memory->getStack();
-    if (stack->size() < 2)
+    auto stack = this->memory.getStack();
+    if (stack.size() < 2)
         throw Error("stack must contains 2 values");
-    std::shared_ptr<avm::IOperand> a = stack->top();
-    stack->pop();
-    std::shared_ptr<avm::IOperand> b  = stack->top();
-    stack->pop();
-    stack->push(a);
-    stack->push(b);
+    std::shared_ptr<avm::IOperand> a = stack.top();
+    stack.pop();
+    std::shared_ptr<avm::IOperand> b  = stack.top();
+    stack.pop();
+    stack.push(a);
+    stack.push(b);
 }
 void avm::CPU::dump()
 {
-    auto stack = this->memory->getStack();
-    if (stack->empty())
+    auto &stack = this->memory.getStack();
+    if (stack.empty())
         return;
-    auto x = stack->top();
+    auto x = stack.top();
     std::cout << x->toString() << std::endl;
-    stack->pop();
+    stack.pop();
     dump();
-    stack->push(x);
+    stack.push(x);
 }
 void avm::CPU::assert(std::string v)
 {
     std::shared_ptr<avm::IOperand> a = this->strToIOperand(v);
-    auto b = this->memory->getStack()->top();
+    auto b = this->memory.getStack().top();
 
     if (a->getType() != b->getType()) 
         throw Error("assert value failed: " + a->toString() + " !=  " + b->toString());
@@ -115,40 +115,40 @@ void avm::CPU::assert(std::string v)
 }
 void avm::CPU::add()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
-    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
+    this->memory.getStack().pop();
+    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
+    this->memory.getStack().pop();
     std::shared_ptr<avm::IOperand> c = *b + a;
-    this->memory->getStack()->push(c);
+    this->memory.getStack().push(c);
 }
 void avm::CPU::sub()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
-    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
+    this->memory.getStack().pop();
+    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
+    this->memory.getStack().pop();
     std::shared_ptr<avm::IOperand> c = *b - a;
-    this->memory->getStack()->push(c);
+    this->memory.getStack().push(c);
 }
 void avm::CPU::mul()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
-    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
+    this->memory.getStack().pop();
+    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
+    this->memory.getStack().pop();
     std::shared_ptr<avm::IOperand> c = *b * a;
-    this->memory->getStack()->push(c);
+    this->memory.getStack().push(c);
 }
 void avm::CPU::div()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
-    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
+    this->memory.getStack().pop();
+    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
+    this->memory.getStack().pop();
     try {
         std::shared_ptr<avm::IOperand> c = *b / a;
-        this->memory->getStack()->push(c);
+        this->memory.getStack().push(c);
     }
     catch (std::exception e) {
         throw Error(e.what());
@@ -156,13 +156,13 @@ void avm::CPU::div()
 }
 void avm::CPU::mod()
 {
-    std::shared_ptr<avm::IOperand> a = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
-    std::shared_ptr<avm::IOperand> b = this->memory->getStack()->top();
-    this->memory->getStack()->pop();
+    std::shared_ptr<avm::IOperand> a = this->memory.getStack().top();
+    this->memory.getStack().pop();
+    std::shared_ptr<avm::IOperand> b = this->memory.getStack().top();
+    this->memory.getStack().pop();
     try {
         std::shared_ptr<avm::IOperand> c = *b % a;
-        this->memory->getStack()->push(c);
+        this->memory.getStack().push(c);
     }
     catch (std::exception e) {
         throw Error(e.what());
@@ -170,10 +170,10 @@ void avm::CPU::mod()
 }
 void avm::CPU::load(std::string v)
 {
-    auto stack = this->memory->getStack();
+    auto stack = this->memory.getStack();
     try {
         int i = std::stoi(v);
-        stack->push(this->memory->removeRegistry(i));
+        stack.push(this->memory.removeRegistry(i));
     }
     catch (std::exception &e){
         throw Error("invalid integer format " + v);
@@ -181,12 +181,12 @@ void avm::CPU::load(std::string v)
 }
 void avm::CPU::store(std::string v)
 {
-    auto stack = this->memory->getStack();
-    if (stack->empty())
+    auto stack = this->memory.getStack();
+    if (stack.empty())
         throw Error("Stack is empty");
     try {
         int i = std::stoi(v);
-        this->memory->storeRegistry(i, stack->top());
+        this->memory.storeRegistry(i, stack.top());
     }
     catch (std::exception &e){
         throw Error("invalid integer format " + v);
@@ -194,10 +194,10 @@ void avm::CPU::store(std::string v)
 }
 void avm::CPU::print()
 {
-    auto stack = this->memory->getStack();
-    if (stack->empty())
+    auto stack = this->memory.getStack();
+    if (stack.empty())
         throw Error("Stack is empty");
-    auto a = stack->top();
+    auto a = stack.top();
     if (a->getType() != avm::INT8) 
         throw Error("assert type failed: " + std::to_string(a->getType()) + " !=  " + std::to_string(avm::INT8));
     std::cout << (char)a->toString().front() << std::endl;
