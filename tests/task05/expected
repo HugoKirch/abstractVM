@@ -1,1 +1,1 @@
-Error: Commands not contains exit command
+\033[1;31mError: Commands not contains exit command\033[0m
