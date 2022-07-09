@@ -67,8 +67,11 @@ void avm::CPU::pop()
 }
 void avm::CPU::clear()
 {
-    for (size_t i = 0; i < this->memory.getStack().size(); i++)
-    this->memory.getStack().pop();
+    auto &stack = this->memory.getStack();
+    if (stack.empty())
+        return;
+    stack.pop();
+    clear();
 }
 void avm::CPU::dup()
 {
@@ -217,7 +220,7 @@ void avm::CPU::print()
     auto a = stack.top();
     if (a->getType() != avm::INT8) 
         throw Error("assert type failed: " + this->types[a->getType()] + " != " + this->types[avm::INT8]);
-    std::cout << (char)a->toString().front() << std::endl;
+    std::cout << (char)std::stoi(a->toString()) << std::endl;
 }
 void avm::CPU::exit()
 {
