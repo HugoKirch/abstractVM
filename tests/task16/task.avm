@@ -1,0 +1,5 @@
+push int32(-1334347)
+push int32(434)
+mod
+dump
+exit
