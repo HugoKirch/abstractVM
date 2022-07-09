@@ -7,6 +7,7 @@
 
 #include "Operand.hpp"
 #include "Factory.hpp"
+#include "Utils.hpp"
 
 avm::Operand::Operand()
 {
@@ -46,7 +47,9 @@ std::shared_ptr<avm::IOperand> avm::Operand::operator/(const std::shared_ptr<avm
 {
     avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
 
-    std::string value = avm::Factory::convert(type, std::to_string(std::stold(this->toString()) / std::stold(rhs->toString())));
+    long double result = std::stold(this->toString()) / std::stold(rhs->toString());
+    std::string v = avm::Utils::setPrecision(result, 20);
+    std::string value = avm::Factory::convert(type, v);
 
     return (avm::Factory::createOperand(type, value));
 }

@@ -1,6 +1,0 @@
-push float(1)
-push float(3)
-div
-dump
-exit
-

@@ -8,6 +8,7 @@
 #include "BigDecimal.hpp"
 #include "BigDecimal.hpp"
 #include "Utils.hpp"
+#include <decimal/decimal>
 
 avm::BigDecimal::BigDecimal(std::string v)
 {
@@ -26,7 +27,8 @@ void avm::BigDecimal::setValue(std::string v)
     catch (std::exception &e) {
         throw Error("Invalid bigdecimal format: " + v);
     }
-    if (v != avm::Utils::removeTrailingZero(std::to_string(this->value)))
+    std::string pv = avm::Utils::removeTrailingZero(v);
+    if (v.compare(pv))
         throw Error("Invalid bigdecimal format: " + v);
 }
 
@@ -37,7 +39,7 @@ avm::eOperandType avm::BigDecimal::getType() const
 
 std::string avm::BigDecimal::toString() const
 {
-    std::string str = std::to_string(this->value);
+    std::string str = avm::Utils::setPrecision<double>(this->value, 15);
    // size_t i;
 
  /*   if (this->value.size() == 0)

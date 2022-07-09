@@ -7,6 +7,7 @@
 
 #include "Factory.hpp"
 #include "Utils.hpp"
+#include <sstream>
 
 std::array<std::shared_ptr<avm::IOperand> (*)(const std::string &), 6> avm::Factory::functions = {
     &avm::Factory::createInt8,
@@ -39,15 +40,24 @@ std::string avm::Factory::stoi(const std::string &value)
 }
 std::string avm::Factory::stof(const std::string &value)
 {
-    return (std::to_string(std::stof(value)));
+    std::ostringstream out;
+    out.precision(7);
+    out << std::fixed << std::stof(value);
+    return (out.str());
 }
 std::string avm::Factory::stod(const std::string &value)
 {
-    return (std::to_string(std::stod(value)));
+    std::ostringstream out;
+    out.precision(15);
+    out << std::fixed << std::stod(value);
+    return (out.str());
 }
 std::string avm::Factory::stold(const std::string &value)
 {
-    return (std::to_string(std::stold(value)));
+    std::ostringstream out;
+    out.precision(20);
+    out << std::fixed << std::stold(value);
+    return (out.str());
 }
 
 std::shared_ptr<avm::IOperand> avm::Factory::createOperand(avm::eOperandType type, const std::string &value)

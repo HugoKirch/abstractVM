@@ -107,7 +107,7 @@ void avm::CPU::assert(std::string v)
     std::shared_ptr<avm::IOperand> a = this->strToIOperand(v);
     auto b = this->memory.getStack().top();
 
-    if (a->toString() != b->toString()) 
+    if (a->toString().compare(b->toString())) 
         throw Error("assert value failed: " + a->toString() + " != " + b->toString());
     if (a->getType() != b->getType()) 
         throw Error("assert type failed: " + this->types[a->getType()] + " != " + this->types[b->getType()]);
@@ -184,9 +184,10 @@ void avm::CPU::mod()
 }
 void avm::CPU::load(std::string v)
 {
+    auto operand = strToIOperand(v);
     auto &stack = this->memory.getStack();
     try {
-        int i = std::stoi(parseValue(v));
+        int i = std::stoi(operand->toString());
         stack.push(this->memory.removeRegistry(i));
     }
     catch (std::exception &e){
@@ -195,11 +196,12 @@ void avm::CPU::load(std::string v)
 }
 void avm::CPU::store(std::string v)
 {
+    auto operand = strToIOperand(v);
     auto &stack = this->memory.getStack();
     if (stack.empty())
         throw Error("Stack is empty");
     try {
-        int i = std::stoi(parseValue(v));
+        int i = std::stoi(operand->toString());
         this->memory.storeRegistry(i, stack.top());
         stack.pop();
     }
@@ -219,7 +221,7 @@ void avm::CPU::print()
 }
 void avm::CPU::exit()
 {
-
+    //TODO PRECISION FLOAT BIGDECIMAL LOAD IOPERAND STORE IOPERAND INT8
 }
 
 avm::CPU::~CPU()
