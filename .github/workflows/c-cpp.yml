@@ -25,7 +25,7 @@ jobs:
       - name: empty_avm
         if: always()
         run: |
-          ./abstractVM task.avm > output
+          ./abstractVM tests/task00/task.avm > output
           diff output tests/task00/expected
       - name: empty_shell_input
         if: always()
