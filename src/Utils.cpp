@@ -23,6 +23,8 @@ std::vector<std::string> avm::Utils::parseString(std::string line, char separato
 
 std::string avm::Utils::removeTrailingZero(std::string str)
 {
+    if (str.find('.') == std::string::npos)
+        return (str);
     str.erase(str.find_last_not_of('0') + 1, std::string::npos );
     if (str.back() == '.') {
         try {
