@@ -1,9 +1,0 @@
-push int8(1)
-push int8(2)
-push int8(3)
-store 2
-dump
-load 2
-dump
-exit
-

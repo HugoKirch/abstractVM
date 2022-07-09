@@ -18,6 +18,8 @@ namespace avm{
             ~Int8();
             std::string toString() const;
             eOperandType getType() const;
+            void setValue(std::string v);
+
 
         private:
             bool negative;

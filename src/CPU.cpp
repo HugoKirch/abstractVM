@@ -38,7 +38,7 @@ std::shared_ptr<avm::IOperand> avm::CPU::strToIOperand(std::string v)
     std::vector<std::string> values = avm::Utils::parseString(value, '(');
     if (values.size() != 2)
         throw Error("Invalid operand format: " + v);
-    values.back().back() = '\0';
+    values.back() = values.back().substr(0, values.back().length() - 1);
     std::shared_ptr<avm::IOperand> operand = avm::Factory::createOperand(getType(values.front()), values.back());
     return (operand);
 }
@@ -97,7 +97,7 @@ void avm::CPU::dump()
     if (stack.empty())
         return;
     auto x = stack.top();
-    std::cout << x->toString() << std::endl;
+    std::cout << avm::Utils::removeTrailingZero(x->toString()) << std::endl;
     stack.pop();
     dump();
     stack.push(x);
@@ -107,7 +107,7 @@ void avm::CPU::assert(std::string v)
     std::shared_ptr<avm::IOperand> a = this->strToIOperand(v);
     auto b = this->memory.getStack().top();
 
-    if (a->toString() != b->toString()) 
+    if (a->toString().compare(b->toString())) 
         throw Error("assert value failed: " + a->toString() + " != " + b->toString());
     if (a->getType() != b->getType()) 
         throw Error("assert type failed: " + this->types[a->getType()] + " != " + this->types[b->getType()]);
@@ -184,9 +184,10 @@ void avm::CPU::mod()
 }
 void avm::CPU::load(std::string v)
 {
+    auto operand = strToIOperand(v);
     auto &stack = this->memory.getStack();
     try {
-        int i = std::stoi(parseValue(v));
+        int i = std::stoi(operand->toString());
         stack.push(this->memory.removeRegistry(i));
     }
     catch (std::exception &e){
@@ -195,11 +196,12 @@ void avm::CPU::load(std::string v)
 }
 void avm::CPU::store(std::string v)
 {
+    auto operand = strToIOperand(v);
     auto &stack = this->memory.getStack();
     if (stack.empty())
         throw Error("Stack is empty");
     try {
-        int i = std::stoi(parseValue(v));
+        int i = std::stoi(operand->toString());
         this->memory.storeRegistry(i, stack.top());
         stack.pop();
     }
@@ -219,7 +221,7 @@ void avm::CPU::print()
 }
 void avm::CPU::exit()
 {
-
+    //TODO PRECISION FLOAT BIGDECIMAL LOAD IOPERAND STORE IOPERAND INT8
 }
 
 avm::CPU::~CPU()

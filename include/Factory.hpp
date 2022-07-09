@@ -22,14 +22,20 @@
 namespace avm {
     class Factory {
         public:
+            static std::string convert(eOperandType, const std::string &value);
             static std::shared_ptr<IOperand> createOperand(eOperandType type, const std::string &value);
         private:
             static std::array<std::shared_ptr<IOperand> (*)(const std::string &), 6> functions;
+            static std::array<std::string (*)(const std::string &), 6> fconvert;
             static std::shared_ptr<IOperand> createInt8(const std::string &value);
             static std::shared_ptr<IOperand> createInt16(const std::string &value);
             static std::shared_ptr<IOperand> createInt32(const std::string &value);
             static std::shared_ptr<IOperand> createFloat(const std::string &value);
             static std::shared_ptr<IOperand> createDouble(const std::string &value);
             static std::shared_ptr<IOperand> createBigDecimal(const std::string &value);
+            static std::string stoi(const std::string &value);
+            static std::string stof(const std::string &value);
+            static std::string stod(const std::string &value);
+            static std::string stold(const std::string &value);
     };
 }
