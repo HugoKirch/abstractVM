@@ -22,16 +22,7 @@ std::shared_ptr<avm::IOperand> avm::Operand::operator+(const std::shared_ptr<avm
 {
     avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
 
-    std::cout << "Type: " << type << std::endl;
-    std::cout << "Value 1: " << std::stold(this->toString()) << this->getType() << std::endl;
-    std::cout << "Value 2: " << std::stold(rhs->toString()) << rhs->getType() << std::endl;
-    std::cout << "R old: " << std::to_string(std::stold(this->toString()) + std::stold(rhs->toString())) << std::stold(this->toString()) << std::endl;
-    std::cout << "R: " << avm::Utils::setPrecision(std::stold(this->toString()) + std::stold(rhs->toString()), 15) << std::stold(this->toString()) << std::endl;
-    
-
-
     std::string value = avm::Factory::convert(type, avm::Utils::setPrecision(std::stold(this->toString()) + std::stold(rhs->toString()), 15));
-    std::cout << "value: " << value << std::endl;
 
     return (avm::Factory::createOperand(type, value));
 }
