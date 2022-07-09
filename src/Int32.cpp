@@ -10,16 +10,23 @@
 
 avm::Int32::Int32(std::string v)
 {
+    setValue(v);
+}
+
+avm::Int32::~Int32()
+{
+}
+
+void avm::Int32::setValue(std::string v)
+{
     try {
         this->value = std::stoi(v);
     }
     catch (std::exception &e) {
         throw Error("Invalid int32 format: " + v);
     }
-}
-
-avm::Int32::~Int32()
-{
+    if (v != std::to_string(this->value))
+        throw Error("Invalid int32 format: " + v);
 }
 
 avm::eOperandType avm::Int32::getType() const

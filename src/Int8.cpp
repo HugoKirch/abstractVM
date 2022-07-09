@@ -7,8 +7,18 @@
 
 #include "Int8.hpp"
 #include "Factory.hpp"
+#include <iostream>
 
 avm::Int8::Int8(std::string v)
+{
+    setValue(v);
+}
+
+avm::Int8::~Int8()
+{
+}
+
+void avm::Int8::setValue(std::string v)
 {
     try {
         this->value = std::stoi(v);
@@ -16,10 +26,8 @@ avm::Int8::Int8(std::string v)
     catch (std::exception &e) {
         throw Error("Invalid int8 format: " + v);
     }
-}
-
-avm::Int8::~Int8()
-{
+    if (v != std::to_string(this->value))
+        throw Error("Invalid int8 format: " + v);
 }
 
 avm::eOperandType avm::Int8::getType() const

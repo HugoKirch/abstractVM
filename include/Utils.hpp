@@ -18,5 +18,19 @@ namespace avm {
     class Utils {
         public:
             static std::vector<std::string> parseString(std::string line, char separator);
+            static std::string removeTrailingZero(std::string str);
+
+            template <typename T>
+            static std::string setPrecision(T value, int n);
     };
+}
+
+template <typename T>
+std::string avm::Utils::setPrecision(T value, int n)
+{
+    std::ostringstream out;
+    
+    out.precision(n);
+    out << value;
+    return out.str();
 }

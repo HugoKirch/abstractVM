@@ -7,19 +7,28 @@
 
 #include "Float.hpp"
 #include "Factory.hpp"
+#include "Utils.hpp"
 
 avm::Float::Float(std::string v)
 {   
+    setValue(v);
+    
+}
+
+avm::Float::~Float()
+{
+}
+void avm::Float::setValue(std::string v)
+{
     try {
         this->value = std::stof(v);
     }
     catch (std::exception &e) {
         throw Error("Invalid float format: " + v);
     }
-}
-
-avm::Float::~Float()
-{
+    std::string pv = avm::Utils::removeTrailingZero(v);
+    if (v.compare(pv))
+        throw Error("Invalid float format: " + v);
 }
 
 avm::eOperandType avm::Float::getType() const
@@ -29,7 +38,7 @@ avm::eOperandType avm::Float::getType() const
 
 std::string avm::Float::toString() const
 {
-    std::string str = std::to_string(this->value);
+    std::string str = avm::Utils::setPrecision(this->value, 7);
   /*  size_t i;
 
     if (this->value.size() == 0)

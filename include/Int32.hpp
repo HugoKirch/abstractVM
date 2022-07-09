@@ -18,6 +18,7 @@ namespace avm{
             ~Int32();
             std::string toString() const;
             eOperandType getType() const;
+            void setValue(std::string v);
 
         private:
             bool negative;

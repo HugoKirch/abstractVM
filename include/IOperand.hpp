@@ -23,6 +23,7 @@ namespace avm {
         public:
             virtual std::string toString() const = 0; // string that represents the instance
             virtual eOperandType getType() const = 0; // returns the type of instance
+            virtual void setValue(std::string v) = 0;
             virtual std::shared_ptr<IOperand> operator+(const std::shared_ptr<IOperand> rhs) const = 0; // sum
             virtual std::shared_ptr<IOperand> operator-(const std::shared_ptr<IOperand> rhs) const = 0; // difference
             virtual std::shared_ptr<IOperand> operator*(const std::shared_ptr<IOperand> rhs) const = 0; // product
