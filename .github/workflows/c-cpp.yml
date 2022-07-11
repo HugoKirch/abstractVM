@@ -21,172 +21,111 @@ jobs:
       - uses: actions/checkout@v3
       - name: compilation
         run: make
-      - name: empty_avm
+      - name: assert
         if: always()
         run: |
-          ./abstractVM tests/task00/task.avm > output
-          diff output tests/task00/expected
-      - name: empty_shell_input
+          ./abstractVM tests/mandatory/task06/task.avm > output
+          diff output tests/mandatory/task06/expected
+      - name: add
         if: always()
         run: |
-          cat tests/task01/input | ./abstractVM > output1
-          diff output1 tests/task01/expected
-      - name: simple test
+          ./abstractVM tests/mandatory/task07/task.avm > output
+          diff output tests/mandatory/task07/expected
+      - name: add2
         if: always()
         run: |
-          ./abstractVM tests/task02/task.avm > output2
-          diff output2 tests/task02/expected
-      - name: int addition test
+          ./abstractVM tests/mandatory/task08/task.avm > output
+          diff output tests/mandatory/task08/expected
+      - name: add3
         if: always()
         run: |
-          ./abstractVM tests/task03/task.avm > output3
-          diff output3 tests/task03/expected
-      - name: shell without exit statement
+          ./abstractVM tests/mandatory/task09/task.avm > output
+          diff output tests/mandatory/task09/expected
+      - name: sub
         if: always()
         run: |
-          cat tests/task04/input | ./abstractVM 2>&1 | cat > output4
-          diff output4 tests/task04/expected
-      - name: program without exit statement
+          ./abstractVM tests/mandatory/task10/task.avm > output
+          diff output tests/mandatory/task10/expected
+      - name: sub2
         if: always()
         run: |
-          ./abstractVM tests/task05/task.avm 2>&1 | cat > output5
-          diff output5 tests/task05/expected
-
-      - name: Assert
+          ./abstractVM tests/mandatory/task11/task.avm > output
+          diff output tests/mandatory/task11/expected
+      - name: sub3
         if: always()
         run: |
-          ./abstractVM tests/task06/task.avm | cat > output6
-          diff output6 tests/task06/expected
-
-      - name: Add
+          ./abstractVM tests/mandatory/task12/task.avm > output
+          diff output tests/mandatory/task12/expected
+      - name: div
         if: always()
         run: |
-          ./abstractVM tests/task07/task.avm | cat > output7
-          diff output7 tests/task07/expected
-
-      - name: Add 2
+          ./abstractVM tests/mandatory/task13/task.avm > output
+          diff output tests/mandatory/task13/expected
+      - name: div2
         if: always()
         run: |
-          ./abstractVM tests/task08/task.avm | cat > output8
-          diff output8 tests/task08/expected
-
-      - name: Add 3
+          ./abstractVM tests/mandatory/task14/task.avm > output
+          diff output tests/mandatory/task14/expected
+      - name: div3
         if: always()
         run: |
-          ./abstractVM tests/task09/task.avm | cat > output9
-          diff output9 tests/task09/expected
-
-      - name: Sub
+          ./abstractVM tests/mandatory/task15/task.avm > output
+          diff output tests/mandatory/task15/expected
+      - name: mod
         if: always()
         run: |
-          ./abstractVM tests/task10/task.avm | cat > output10
-          diff output10 tests/task10/expected
-
-      - name: Sub 2
+          ./abstractVM tests/mandatory/task16/task.avm > output
+          diff output tests/mandatory/task16/expected
+      - name: mod2
         if: always()
         run: |
-          ./abstractVM tests/task11/task.avm | cat > output11
-          diff output11 tests/task11/expected
-
-      - name: Sub 3
+          ./abstractVM tests/mandatory/task17/task.avm > output
+          diff output tests/mandatory/task17/expected
+      - name: mul
         if: always()
         run: |
-          ./abstractVM tests/task12/task.avm | cat > output12
-          diff output12 tests/task12/expected
-
-      - name: Div
+          ./abstractVM tests/mandatory/task18/task.avm > output
+          diff output tests/mandatory/task18/expected
+      - name: mul2
         if: always()
         run: |
-          ./abstractVM tests/task13/task.avm | cat > output13
-          diff output13 tests/task13/expected
-
-      - name: Div 2
+          ./abstractVM tests/mandatory/task19/task.avm > output
+          diff output tests/mandatory/task19/expected
+      - name: dup
         if: always()
         run: |
-          ./abstractVM tests/task14/task.avm | cat > output14
-          diff output14 tests/task14/expected
-
-      - name: Div 3
+          ./abstractVM tests/mandatory/task20/task.avm > output
+          diff output tests/mandatory/task20/expected
+      - name: pop
         if: always()
         run: |
-          ./abstractVM tests/task15/task.avm | cat > output15
-          diff output15 tests/task15/expected
-
-      - name: Mod
+          ./abstractVM tests/mandatory/task21/task.avm > output
+          diff output tests/mandatory/task21/expected
+      - name: print
         if: always()
         run: |
-          ./abstractVM tests/task16/task.avm | cat > output16
-          diff output16 tests/task16/expected
-
-      - name: Mod 2
+          ./abstractVM tests/mandatory/task22/task.avm > output
+          diff output tests/mandatory/task22/expected
+      - name: push
         if: always()
         run: |
-          ./abstractVM tests/task17/task.avm | cat > output17
-          diff output17 tests/task17/expected
-
-      - name: Mul
+          ./abstractVM tests/mandatory/task23/task.avm > output
+          diff output tests/mandatory/task23/expected
+      - name: swap
         if: always()
         run: |
-          ./abstractVM tests/task18/task.avm | cat > output18
-          diff output18 tests/task18/expected
-
-      - name: Mul 2
+          ./abstractVM tests/mandatory/task24/task.avm > output
+          diff output tests/mandatory/task24/expected
+      - name: clear
         if: always()
         run: |
-          ./abstractVM tests/task19/task.avm | cat > output19
-          diff output19 tests/task19/expected
-
-      - name: Dup
+          ./abstractVM tests/mandatory/task25/task.avm > output
+          diff output tests/mandatory/task25/expected
+      - name: clear2
         if: always()
         run: |
-          ./abstractVM tests/task20/task.avm | cat > output20
-          diff output20 tests/task20/expected
-
-      - name: Pop
-        if: always()
-        run: |
-          ./abstractVM tests/task21/task.avm | cat > output21
-          diff output21 tests/task21/expected
-
-      - name: Print
-        if: always()
-        run: |
-          ./abstractVM tests/task22/task.avm | cat > output22
-          diff output22 tests/task22/expected
-
-      - name: Push
-        if: always()
-        run: |
-          ./abstractVM tests/task23/task.avm | cat > output23
-          diff output23 tests/task23/expected
-
-      - name: Swap
-        if: always()
-        run: |
-          ./abstractVM tests/task24/task.avm | cat > output24
-          diff output24 tests/task24/expected
-
-      - name: Clear
-        if: always()
-        run: |
-          ./abstractVM tests/task25/task.avm | cat > output25
-          diff output25 tests/task25/expected
-
-      - name: Clear 2
-        if: always()
-        run: |
-          ./abstractVM tests/task26/task.avm | cat > output26
-          diff output26 tests/task26/expected
-
-
-  extra-tests:
-    needs: build
-
-    runs-on: ubuntu-latest
-    steps:
-      - name: prout
-        run: echo prout
-
+          ./abstractVM tests/mandatory/task26/task.avm > output
+          diff output tests/mandatory/task26/expected
   push:
     if: github.ref == 'refs/heads/main'
     needs: [build, mandatory-tests]

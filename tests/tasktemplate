@@ -1,0 +1,6 @@
+      - name: |NAME|
+        if: always()
+        run: |
+          ./abstractVM tests/|FOLDER|/task.avm > output
+          diff output tests/|FOLDER|/expected
+
