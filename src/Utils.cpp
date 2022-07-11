@@ -25,11 +25,16 @@ std::vector<std::string> avm::Utils::parseString(std::string line, char separato
 
 std::string avm::Utils::removeTrailingZero(std::string str)
 {
+    if (str[0] == '0')
+        str = str.substr(str.find_first_not_of('0'), str.length());
+    if (str.empty() || str[0] == '.')
+        str = '0' + str;
     size_t count = std::count_if(str.begin(), str.end(), []( char c ){return c =='.';});
     if (count  > 1 || str.back() == '.')
         throw Error("Invalid decimal format: " + str);
-    if (str.find('.') == std::string::npos)
+    if (str.find('.') == std::string::npos){
         return (str);
+    }
     str.erase(str.find_last_not_of('0') + 1, std::string::npos );
     if (str.back() == '.') {
         try {
