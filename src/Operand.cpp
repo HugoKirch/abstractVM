@@ -47,7 +47,6 @@ std::shared_ptr<avm::IOperand> avm::Operand::operator/(const std::shared_ptr<avm
 {
     avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
 
-    std::cout << std::stold(rhs->toString()) << std::endl;
     if (std::stold(rhs->toString()) == 0)
         throw Error("div by 0");
     long double result = std::stold(this->toString()) / std::stold(rhs->toString());
