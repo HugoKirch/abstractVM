@@ -10,10 +10,14 @@
 void avm::Chipset::addCommand(std::string str)
 {
     std::string command;
+    std::vector<std::string> commands;
 
     if (str.empty())
         return;
-    command = avm::Utils::parseString(str, ';').front();
+    commands = avm::Utils::parseString(str, ';');
+    if (commands.size() == 0)
+        return;
+    command = commands.front();
     if (command.empty())
         return;
     this->commands.push_back(command);

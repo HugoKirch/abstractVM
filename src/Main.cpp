@@ -6,6 +6,7 @@
 */
 
 #include "AVM.hpp"
+#include <limits>
 
 int main(int argc, char **argv)
 {
