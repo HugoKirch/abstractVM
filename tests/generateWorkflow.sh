@@ -25,7 +25,9 @@ for d in mandatory/*; do
     fi
 
 done
+
 cat generators_templates/extratest >> output
+
 for d in extra/*; do
     if FILE=$(ls "$d" | grep ".*\.avm") ; then
         TEMPLATE=$(cat generators_templates/tasktemplate)
