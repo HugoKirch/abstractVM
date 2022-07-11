@@ -169,7 +169,6 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::sub(const std::shared_ptr<av
 
     std::string rstr = rhs->decimal;
     std::string lstr = this->decimal;
-    int x = 0;
 
 
     std::string bigger;
@@ -179,20 +178,18 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::sub(const std::shared_ptr<av
         bigger = lstr;
         smaller = rstr;
         smallLen = rstr.length();
-        x = 0;
     }
     else {
         bigger = rstr;
         smaller = lstr;
         smallLen = lstr.length();
-        x = 1;
     }
 
     std::reverse(lstr.begin(), lstr.end());
 
 
 
-     for (int i = 0; i < bigger.length() - smallLen; i++) {
+     for (int i = 0; i < (int)bigger.length() - smallLen; i++) {
         smaller.push_back('0');
     }
     if (!avm::Utils::isBigger(this->decimal, rhs->decimal) ||  this->decimal.length() != rhs->decimal.length() || !avm::Utils::isBigger(this->integer, rhs->integer)) {
@@ -202,7 +199,7 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::sub(const std::shared_ptr<av
     }
     std::reverse(bigger.begin(), bigger.end());
     std::reverse(smaller.begin(), smaller.end());
-    for (int i = 0; i < bigger.length(); i++) {
+    for (int i = 0; i < (int)bigger.length(); i++) {
         int c = bigger[i] - smaller[i] - r;
         r = 0;
         if (c < 0) {
@@ -222,25 +219,18 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::sub(const std::shared_ptr<av
 
     rstr = rhs->integer;
     lstr = this->integer;
-    x = 0;
 
-
-    bigger;
-    smallLen;
-    smaller;
     if (avm::Utils::isBigger(lstr, rstr)) {
         bigger = lstr;
         smaller = rstr;
         smallLen = rstr.length();
         neg = this->negative;
-        x = 0;
     }
     else {
         bigger = rstr;
         smaller = lstr;
         smallLen = lstr.length();
         neg = !rhs->negative;
-        x = 1;
     }
 
 
@@ -249,11 +239,11 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::sub(const std::shared_ptr<av
 
 
 
-     for (int i = 0; i < bigger.length() - smallLen; i++) {
+     for (int i = 0; i < (int)bigger.length() - smallLen; i++) {
         smaller.push_back('0');
     }
     std::reverse(bigger.begin(), bigger.end());
-    for (int i = 0; i < bigger.length(); i++) {
+    for (int i = 0; i < (int)bigger.length(); i++) {
         int c = bigger[i] - smaller[i] - r;
         r = 0;
         if (c < 0) {
@@ -273,7 +263,50 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::sub(const std::shared_ptr<av
 
 std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::mul(const std::shared_ptr<avm::TBigDecimal> rhs)
 {
+    std::string result;
+    std::string lstr = this->integer + this->decimal;
+    std::string rstr = rhs->integer + rhs->decimal;
+    std::vector<std::string> list;
 
+    int tmp = 0;
+
+    for (int i = 0; i < (int)lstr.length(); i++) {
+        std::string line;
+        char c;
+        for (int j = 0; j< i; j++)
+            line += '0';
+        for (int j = 0; j < (int)rstr.length(); j++) {
+            c = (rstr[j] - 48) * (lstr[i] - 48) + tmp;
+            if (c > 10) {
+                tmp = c / 10;
+                c = c % 10;
+            }
+            line.push_back(c + 48);
+        }
+        for (int j = i; j < (int)lstr.length() - 1; j++)
+            line += '0';
+        list.push_back(line);
+    }
+    if (tmp != 0) {
+        std::string ret = std::string(1, tmp + 48);
+        for (int i = 0; i < (int)(this->decimal.length() + rhs->decimal.length()); i++)
+            ret += '0';
+        list.push_back(ret);
+
+    }
+    auto o = std::make_shared<avm::TBigDecimal>("0");
+    for (std::string str : list) {
+        o = *o + std::make_shared<avm::TBigDecimal>(str);
+    }
+    std::string r = o->toString();
+    if (!this->decimal.empty() || !rhs->decimal.empty())
+        r.insert(r.length() - this->decimal.length() - rhs->decimal.length(), ".");
+    o = std::make_shared<avm::TBigDecimal>(r);
+    if (this->negative != rhs->negative)
+        o->negative = true;
+    else 
+        o->negative = false;
+    return o;
 }
 
 std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::operator+(const std::shared_ptr<avm::TBigDecimal> rhs)

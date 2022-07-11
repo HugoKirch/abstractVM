@@ -25,6 +25,8 @@ std::vector<std::string> avm::Utils::parseString(std::string line, char separato
 
 std::string avm::Utils::removeTrailingZero(std::string str)
 {
+    if (!str.compare("0"))
+        return (str);
     if (str[0] == '0')
         str = str.substr(str.find_first_not_of('0'), str.length());
     if (str.empty() || str[0] == '.')
