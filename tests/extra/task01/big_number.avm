@@ -1,0 +1,5 @@
+push bigdecimal(9999999999.99999999999)
+push bigdecimal(0.00000000001)
+add
+dump
+exit
