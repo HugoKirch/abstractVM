@@ -18,7 +18,11 @@ OBJS	=	$(SRCS:.cpp=.o)
 
 CXXFLAGS	=	-std=c++2a -g -Wall -Wextra -I include
 
-all:	$(NAME)
+all:
+	bash tests/generators_templates/link_templates
+	$(NAME)
+
+al: $(NAME)
 
 $(NAME):	$(OBJS)
 	$(CXX) $(OBJS) -g -o $(NAME) $(CXXFLAGS)
