@@ -15,7 +15,7 @@ std::vector<std::string> avm::Utils::parseString(std::string line, char separato
     std::string tmp;
 
     while(std::getline(iss, tmp, separator)) {
-        if (!tmp.empty())
+        if (!tmp.empty() || separator == ';')
             result.push_back(tmp);
     }
     return (result);
