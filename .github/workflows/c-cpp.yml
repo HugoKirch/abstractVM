@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: make
-        run: make
+        run: make al
 
   mandatory-tests:
     needs: build
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: compilation
-        run: make
+        run: make al
       - name: assert
         if: always()
         run: |
@@ -133,12 +133,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: compilation
-        run: make
-      - name: big_number
-        if: always()
-        run: |
-          ./abstractVM tests/extra/task01/big_number.avm > output
-          diff output tests/extra/task01/expected
+        run: make al
   push:
     if: github.ref == 'refs/heads/main'
     needs: [build, mandatory-tests]
