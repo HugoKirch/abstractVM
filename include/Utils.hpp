@@ -19,6 +19,7 @@ namespace avm {
         public:
             static std::vector<std::string> parseString(std::string line, char separator);
             static std::string removeTrailingZero(std::string str);
+            static bool isBigger(std::string lstr, std::string rstr);
 
             template <typename T>
             static std::string setPrecision(T value, int n);

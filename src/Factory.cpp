@@ -63,7 +63,6 @@ std::string avm::Factory::stold(const std::string &value)
 std::shared_ptr<avm::IOperand> avm::Factory::createOperand(avm::eOperandType type, const std::string &value)
 {
     auto function = avm::Factory::functions.at(type);
-
     return (function(avm::Utils::removeTrailingZero(value)));
 }
 
@@ -89,5 +88,5 @@ std::shared_ptr<avm::IOperand> avm::Factory::createDouble(const std::string &val
 }
 std::shared_ptr<avm::IOperand> avm::Factory::createBigDecimal(const std::string &value)
 {
-    return (std::make_shared<avm::BigDecimal>(value));
+    return (std::make_shared<avm::TBigDecimal>(value));
 }

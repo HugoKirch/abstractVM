@@ -14,6 +14,7 @@
 #include "Float.hpp"
 #include "Double.hpp"
 #include "BigDecimal.hpp"
+#include "TBigDecimal.hpp"
 
 #include <string>
 #include <array>
