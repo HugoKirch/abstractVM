@@ -140,8 +140,18 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::add(const std::shared_ptr<av
         std::reverse(tmpp.begin(), tmpp.end());
         
     }
+    for (int i = smallLen; i < (int)bigger.length(); i++) {
+        if (r != 1)
+            break;
+        char c = bigger[i] + 1;
+        if (c > '9')
+            c -= 10;
+        else
+            r = 0;
+        bigger[i] = c;
+    }
     if (r == 1)
-        bigger[smallLen] += 1;
+        bigger = bigger + "1";
     for (int i = smallLen; i < (int)bigger.length(); i++) {
         result.push_back(bigger[i]);
         std::string tmpp = result;
