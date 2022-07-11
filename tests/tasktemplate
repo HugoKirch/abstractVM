@@ -1,6 +1,6 @@
       - name: |NAME|
         if: always()
         run: |
-          ./abstractVM tests/|FOLDER|/task.avm > output
+          ./abstractVM tests/|FOLDER|/|FILE| > output
           diff output tests/|FOLDER|/expected
 
