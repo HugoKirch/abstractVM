@@ -1,0 +1,5 @@
+      - name: |NAME|
+        if: always()
+        run: |
+          cat tests/|FOLDER|/|FILE| | ./abstractVM > output
+          diff output tests/|FOLDER|/expected

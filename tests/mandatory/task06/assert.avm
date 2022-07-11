@@ -1,0 +1,3 @@
+push double(42.2)
+assert double(42.2)
+exit

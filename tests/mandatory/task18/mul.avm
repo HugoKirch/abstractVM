@@ -1,0 +1,5 @@
+push int32(32767)
+push int32(32767)
+mul
+dump
+exit

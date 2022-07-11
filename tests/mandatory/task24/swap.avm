@@ -1,0 +1,7 @@
+push int32(656)
+push double(678.343)
+push int32(4321)
+push int16(-34)
+swap
+dump
+exit
