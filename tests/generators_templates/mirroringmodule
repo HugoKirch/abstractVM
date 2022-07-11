@@ -1,0 +1,15 @@
+  push:
+    if: github.ref == 'refs/heads/main'
+    needs: [build, mandatory-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Push to main repo
+        uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            git@github.com:EpitechPromo2025/B-SYN-400-NCY-4-1-abstractVM-hugo.kirch.git
+          ssh_private_key:
+            ${{ secrets.SSH_PRIVATE_KEY }}
