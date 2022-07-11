@@ -126,6 +126,14 @@ jobs:
         run: |
           ./abstractVM tests/mandatory/task26/clear2.avm > output
           diff output tests/mandatory/task26/expected
+  extra-tests:
+    needs: build
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: compilation
+        run: make
   push:
     if: github.ref == 'refs/heads/main'
     needs: [build, mandatory-tests]
