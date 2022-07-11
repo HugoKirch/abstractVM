@@ -89,5 +89,5 @@ std::shared_ptr<avm::IOperand> avm::Factory::createDouble(const std::string &val
 }
 std::shared_ptr<avm::IOperand> avm::Factory::createBigDecimal(const std::string &value)
 {
-    return (std::make_shared<avm::BigDecimal>(value));
+    return (std::make_shared<avm::TBigDecimal>(value));
 }

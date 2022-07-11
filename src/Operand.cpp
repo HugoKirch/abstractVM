@@ -21,6 +21,13 @@ avm::Operand::~Operand()
 std::shared_ptr<avm::IOperand> avm::Operand::operator+(const std::shared_ptr<avm::IOperand> rhs) const
 {
     avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
+    if (type == avm::BIGDECIMAL) {
+        auto a = std::make_shared<avm::TBigDecimal>(this->toString());
+        auto b = std::make_shared<avm::TBigDecimal>(rhs->toString());
+        std::cout << "a " << a->toString() << std::endl;
+        std::cout << "b " << b->toString() << std::endl;
+        return (*a + b);
+    }
 
     std::string value = avm::Factory::convert(type, avm::Utils::setPrecision(std::stold(this->toString()) + std::stold(rhs->toString()), 15));
 
