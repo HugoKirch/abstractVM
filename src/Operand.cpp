@@ -60,9 +60,9 @@ std::shared_ptr<avm::IOperand> avm::Operand::operator*(const std::shared_ptr<avm
 std::shared_ptr<avm::IOperand> avm::Operand::operator/(const std::shared_ptr<avm::IOperand> rhs) const
 {
     avm::eOperandType type = (this->getType() > rhs->getType()) ? this->getType() : rhs->getType();
-
     if (std::stold(rhs->toString()) == 0)
         throw Error("div by 0");
+
     long double result = std::stold(this->toString()) / std::stold(rhs->toString());
     std::string v = avm::Utils::setPrecision(result, 20);
     std::string value = avm::Factory::convert(type, v);
