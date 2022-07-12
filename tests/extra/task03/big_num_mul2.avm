@@ -1,0 +1,8 @@
+push bigdecimal(5.15941561)
+push bigdecimal(9.2594848484)
+mul
+dump
+push float(0.1)
+mul
+dump
+exit
