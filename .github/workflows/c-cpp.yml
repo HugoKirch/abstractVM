@@ -154,6 +154,16 @@ jobs:
         run: |
           ./abstractVM tests/extra/task01/big_number.avm > output
           diff output tests/extra/task01/expected
+      - name: big_num_mul
+        if: always()
+        run: |
+          ./abstractVM tests/extra/task02/big_num_mul.avm > output
+          diff output tests/extra/task02/expected
+      - name: big_num_mul2
+        if: always()
+        run: |
+          ./abstractVM tests/extra/task03/big_num_mul2.avm > output
+          diff output tests/extra/task03/expected
   push:
     if: github.ref == 'refs/heads/main'
     needs: [build, mandatory-tests]
