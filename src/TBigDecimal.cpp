@@ -147,7 +147,7 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::add(const std::shared_ptr<av
         if (c > '9')
             c -= 10;
         else
-            r = 0;
+            r = 0;  
         bigger[i] = c;
     }
     if (r == 1)
@@ -282,7 +282,7 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::mul(const std::shared_ptr<av
 
     for (int i = 0; i < (int)lstr.length(); i++) {
         std::string line;
-        char c;
+        int c;
         for (int j = 0; j< i; j++)
             line += '0';
         for (int j = 0; j < (int)rstr.length(); j++) {
@@ -299,10 +299,13 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::mul(const std::shared_ptr<av
     }
     if (tmp != 0) {
         std::string ret = std::string(1, tmp + 48);
-        for (int i = 0; i < (int)(this->decimal.length() + rhs->decimal.length()); i++)
+        for (int i = 0; i < (int)(this->decimal.length() + rhs->decimal.length()); i++) {
             ret += '0';
-        list.push_back(ret);
-
+        }
+        if (ret.length() != 1) {
+            list.push_back(ret);
+            tmp = 0;
+        }
     }
     auto o = std::make_shared<avm::TBigDecimal>("0");
     for (std::string str : list) {
@@ -311,6 +314,8 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::mul(const std::shared_ptr<av
     std::string r = o->toString();
     if (!this->decimal.empty() || !rhs->decimal.empty())
         r.insert(r.length() - this->decimal.length() - rhs->decimal.length(), ".");
+    if (tmp != 0)
+        r = std::string(1, tmp + 48) + r;
     o = std::make_shared<avm::TBigDecimal>(r);
     if (this->negative != rhs->negative)
         o->negative = true;
