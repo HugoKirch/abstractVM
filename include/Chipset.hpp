@@ -24,7 +24,7 @@ namespace avm {
             Chipset(std::string filename = "");
             ~Chipset();
             std::vector<std::string> &getCommands();
-            void addCommand(std::string str);
+            std::string addCommand(std::string str);
             void execute();
             void initFonctions();
 

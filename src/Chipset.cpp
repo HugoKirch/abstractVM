@@ -7,20 +7,21 @@
 
 #include "Chipset.hpp"
 
-void avm::Chipset::addCommand(std::string str)
+std::string avm::Chipset::addCommand(std::string str)
 {
     std::string command;
     std::vector<std::string> commands;
 
     if (str.empty())
-        return;
+        return "";
     commands = avm::Utils::parseString(str, ';');
     if (commands.size() == 0)
-        return;
+        return "";
     command = commands.front();
     if (command.empty())
-        return;
+        return "";
     this->commands.push_back(command);
+    return (command);
     
 }
 
@@ -54,7 +55,7 @@ avm::Chipset::Chipset(std::string filename)
             throw avm::Error("Bad file extension: '" + extension.generic_string() + "' instead of '.avm'");
 
         while (getline(file, tmp) && !exit) {
-            this->addCommand(tmp);
+            tmp = this->addCommand(tmp);
             if (!tmp.compare("exit"))
                 exit = true;
         }

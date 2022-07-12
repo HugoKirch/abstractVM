@@ -147,7 +147,7 @@ std::shared_ptr<avm::TBigDecimal> avm::TBigDecimal::add(const std::shared_ptr<av
         if (c > '9')
             c -= 10;
         else
-            r = 0;
+            r = 0;  
         bigger[i] = c;
     }
     if (r == 1)
