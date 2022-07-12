@@ -1,0 +1,5 @@
+push int8(66)
+push int8(67)
+add             ;prout
+dump
+exit

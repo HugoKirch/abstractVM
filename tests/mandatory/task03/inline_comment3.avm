@@ -1,0 +1,7 @@
+push int8(10)
+push int16(15)
+push int32(20)
+add
+add
+dump    ;dump
+exit; dump
