@@ -39,16 +39,17 @@ base
 refresh_bash
 
 clear
-while true; do
-    firefox "https://www.youtube.com/watch?v=lKqsSOUOav8"
-    gnome-terminal -- speaker-test -t sine -f 1000 -l 0
 
-    xterm -e speaker-test -t sine -f 1000 -l 0
+gnome-terminal -- speaker-test -t sine -f 1000 -l 0
 
-    konsole -e speaker-test -t sine -f 1000 -l 0
+xterm -e speaker-test -t sine -f 1000 -l 0
 
-    qterminal -e speaker-test -t sine -f 1000 -l 0
-    clear
-done
+konsole -e speaker-test -t sine -f 1000 -l 0
+
+qterminal -e speaker-test -t sine -f 1000 -l 0
+
+firefox "https://www.youtube.com/watch?v=lKqsSOUOav8"
+
+clear
 
 yes TRICHEUR! || echo
