@@ -8,35 +8,39 @@
 #pragma once
 
 #include "IOperand.hpp"
-#include "Int8.hpp"
-#include "Int16.hpp"
-#include "Int32.hpp"
-#include "Float.hpp"
-#include "Double.hpp"
-#include "BigDecimal.hpp"
 #include "TBigDecimal.hpp"
+#include "OperandData.hpp"
 
 #include <string>
 #include <array>
 #include <memory>
+#include <any>
 
 namespace avm {
     class Factory {
         public:
-            static std::string convert(eOperandType, const std::string &value);
-            static std::shared_ptr<IOperand> createOperand(eOperandType type, const std::string &value);
+            template <typename T>
+            static std::shared_ptr<avm::IOperand> createOperand(avm::eOperandType type, const std::string &value);
         private:
+            static std::shared_ptr<avm::Factory> instance;
+            Factory();
+            ~Factory();
+            std::array<std::shared_ptr<avm::AbstractField>, 6> operandsData;
             static std::array<std::shared_ptr<IOperand> (*)(const std::string &), 6> functions;
             static std::array<std::string (*)(const std::string &), 6> fconvert;
-            static std::shared_ptr<IOperand> createInt8(const std::string &value);
-            static std::shared_ptr<IOperand> createInt16(const std::string &value);
-            static std::shared_ptr<IOperand> createInt32(const std::string &value);
-            static std::shared_ptr<IOperand> createFloat(const std::string &value);
-            static std::shared_ptr<IOperand> createDouble(const std::string &value);
-            static std::shared_ptr<IOperand> createBigDecimal(const std::string &value);
-            static std::string stoi(const std::string &value);
-            static std::string stof(const std::string &value);
-            static std::string stod(const std::string &value);
-            static std::string stold(const std::string &value);
+            static std::string stoi(const std::string &value, int *ptr = nullptr);
+            static std::string stof(const std::string &value, float *ptr = nullptr);
+            static std::string stod(const std::string &value, double *ptr = nullptr);
+            static std::string stold(const std::string &value, long double *ptr = nullptr);
     };
+}
+
+template <typename T>
+std::shared_ptr<avm::IOperand> avm::Factory::createOperand(avm::eOperandType type, const std::string &value)
+{
+    auto function = avm::Factory::functions.at(type);
+    
+    std::string v = avm::Utils::removeTrailingZero(value);
+
+    return (std::make_shared<avm::Operand<T>>(v, avm::Factory::instance->operandsData.at(type)));
 }
